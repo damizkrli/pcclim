@@ -1,19 +1,71 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
-        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
-        {% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
-        {% endblock %}
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    {% block stylesheets %}{{ encore_entry_link_tags('app') }}{% endblock %}
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light">
+    <div class="navbar-brand name d-flex align-item-start justify-content-start ms-5">PC CLIM</div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+            aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse d-flex align-items-center justify-content-end me-5" id="navbarText">
+        <ul class="navbar-nav mr-5 ml-auto">
+            <li class="nav-item active">
+                <h4>
+                    <a class="nav-link hover-underline-animation link" href="#">ACCUEIL</a>
+                </h4>
+            </li>
+            <li class="nav-item active">
+                <h4>
+                    <a class="nav-link hover-underline-animation link" href="#">QUI SOMMES-NOUS</a>
+                </h4>
+            </li>
+            <li class="nav-item active">
+                <h4><a class="nav-link  hover-underline-animation link" href="#">ACTIVITÉS</a></h4>
+            </li>
+            <li class="nav-item active">
+                <h4>
+                    <a class="nav-link  hover-underline-animation link" href="#">CONTACT</a>
+                </h4>
+            </li>
+        </ul>
+    </div>
+</nav>
+{% block body %}{% endblock %}
+<section class="">
+    <!-- Footer -->
+    <footer class="text-center text-white">
+        <!-- Grid container -->
+        <div class="container p-4 pb-0">
+            <!-- Section: CTA -->
+            <section class="">
+                <p class="d-flex justify-content-center align-items-center">
+                    <span class="me-3">Register for free</span>
+                    <button type="button" class="btn btn-outline-light btn-rounded">
+                        Sign up!
+                    </button>
+                </p>
+            </section>
+            <!-- Section: CTA -->
+        </div>
+        <!-- Grid container -->
 
-        {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
-        {% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-    </body>
+        <!-- Copyright -->
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+            © 2020 Copyright:
+            <a class="text-white" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+        </div>
+        <!-- Copyright -->
+    </footer>
+    <!-- Footer -->
+</section>
+
+{% block javascripts %}{{ encore_entry_script_tags('app') }}{% endblock %}
+</body>
 </html>

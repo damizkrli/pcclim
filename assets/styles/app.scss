@@ -1,0 +1,73 @@
+@import "override";
+@import "vars";
+@import "~bootstrap/scss/bootstrap";
+
+body {
+    background-color: $text;
+}
+
+.navbar {
+    color: $nav-bar !important;
+}
+
+
+.name {
+    color: $nav-bar !important;
+    font-size: 64px;
+    letter-spacing: 2px;
+    font-family: 'Inter', sans-serif;
+}
+
+.link {
+    font-family: 'Inter', sans-serif;
+    color: $text;
+text
+    &:link:hover {
+        color: $text !important;
+    }
+}
+
+.hover-underline-animation {
+    display: inline-block;
+    position: relative;
+    color: $nav-bar !important;
+}
+
+.hover-underline-animation:after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #900202;
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+}
+
+.hover-underline-animation:hover:after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+section {
+    max-height: 100vh;
+}
+
+.introduction {
+    background-color: $nav-bar;
+    font-size: $text-size;
+}
+
+.img {
+
+}
+
+footer {
+    background-color: $nav-bar;
+    position: fixed;
+    height: 100px;
+    bottom: 0;
+    width: 100%;
+}
