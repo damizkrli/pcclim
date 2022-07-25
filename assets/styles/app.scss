@@ -3,24 +3,25 @@
 @import "~bootstrap/scss/bootstrap";
 
 body {
-    background-color: $text;
+    background-color: #FFFFFF;
 }
 
 .navbar {
     color: $nav-bar !important;
 }
 
-
 .name {
     color: $nav-bar !important;
-    font-size: 64px;
+    font-size: $size-title;
     letter-spacing: 2px;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Comfortaa', cursive;
+    margin-top: 5px;
 }
 
 .link {
     font-family: 'Inter', sans-serif;
     color: $text;
+
 text
     &:link:hover {
         color: $text !important;
@@ -57,11 +58,13 @@ section {
 
 .introduction {
     background-color: $nav-bar;
-    font-size: $text-size;
+    font-size: $size-text;
 }
 
 .img {
-
+    position: relative;
+    top: 0;
+    left: 0;
 }
 
 footer {

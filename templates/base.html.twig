@@ -3,38 +3,19 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta charset="UTF-8">
     <title>{% block title %}Welcome!{% endblock %}</title>
     {% block stylesheets %}{{ encore_entry_link_tags('app') }}{% endblock %}
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light">
-    <div class="navbar-brand name d-flex align-item-start justify-content-start ms-5">PC CLIM</div>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
-            aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse d-flex align-items-center justify-content-end me-5" id="navbarText">
-        <ul class="navbar-nav mr-5 ml-auto">
-            <li class="nav-item active">
-                <h4>
-                    <a class="nav-link hover-underline-animation link" href="#">ACCUEIL</a>
-                </h4>
-            </li>
-            <li class="nav-item active">
-                <h4>
-                    <a class="nav-link hover-underline-animation link" href="#">QUI SOMMES-NOUS</a>
-                </h4>
-            </li>
-            <li class="nav-item active">
-                <h4><a class="nav-link  hover-underline-animation link" href="#">ACTIVITÉS</a></h4>
-            </li>
-            <li class="nav-item active">
-                <h4>
-                    <a class="nav-link  hover-underline-animation link" href="#">CONTACT</a>
-                </h4>
-            </li>
-        </ul>
+<nav class="navbar navbar-expand-lg">
+    <div class="container-fluid">
+        <div class="navbar-brand name d-flex align-items-start justify-content-start" href="{{ path('app_home') }}">
+            <div>
+                <img class="" src="https://i.ibb.co/cQsGHSw/2-480w.webp" alt="pasquier-coureau" width="90" height="82">
+            </div>
+            <div class="name">PC CLIM</div>
+        </div>
+    </div>
     </div>
 </nav>
 {% block body %}{% endblock %}

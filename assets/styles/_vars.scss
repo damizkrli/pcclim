@@ -1,5 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa&family=Inter:wght@800&display=swap');
 
 $text: whitesmoke;
 $nav-bar: #273766;
-$text-size: 20px;
+$size-text: calc(16px + (16 - 12) * ((100vw - 300px) / (1600 - 300)));
+$size-title: calc(64px + (16 - 12) * ((100vw - 300px) / (1600 - 300)))
+
