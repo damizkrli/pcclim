@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}PC CLIM{% endblock %}
+
+{% block body %}
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="d-flex align-items-center justify-content-center">
+                    <img src="https://i.ibb.co/myMZdYK/GOPR0016-up-1.jpg" class="img img-fluid m-5 shadow"
+                         alt="Pasquier-Coureau">
+                </div>
+                <h1 class="title mb-5">Notre Histoire</h1>
+                <p style="text-indent: 2%">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Odio aliquet ante
+                    vel commodo,
+                    integer etiam purus, nibh. Viverra odio nibh nisl nullam nec euismod nec massa. In cras faucibus
+                    eleifend mollis consectetur morbi vitae pulvinar adipiscing. Nec enim eu egestas eget adipiscing sed
+                    commodo adipiscing placerat. Lorem ipsum dolor sit amet, consectetur adipisicing elit. A, aspernatur
+                    culpa cum deleniti deserunt earum eius eos inventore nemo nostrum, repellat, voluptate! Alias amet
+                    aperiam est minus nobis perspiciatis provident!
+                </p>
+
+                <p style="text-indent: 2%">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab autem
+                    blanditiis, cum dolores doloribus expedita explicabo harum itaque iure laudantium numquam officia
+                    perspiciatis quaerat quibusdam quos
+                    sit voluptatibus. Aliquid, fugiat. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam
+                    dolorum eveniet, hic iusto labore magni maiores odit provident quibusdam ratione rem sequi tempore
+                    voluptatibus. Eligendi error nihil vitae. Nihil, sit.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    {# Section Team #}
+    <section>
+        <div class="container">
+            {% include 'home/sections/team.html.twig' %}
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            {% include 'home/sections/activity.html.twig' %}
+        </div>
+    </section>
+
+
+
+{% endblock %}

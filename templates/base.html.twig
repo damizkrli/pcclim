@@ -7,46 +7,12 @@
     {% block stylesheets %}{{ encore_entry_link_tags('app') }}{% endblock %}
 </head>
 <body>
-<nav class="navbar navbar-expand-lg">
-    <div class="container-fluid">
-        <div class="navbar-brand name d-flex align-items-start justify-content-start" href="{{ path('app_home') }}">
-            <div>
-                <img class="" src="https://i.ibb.co/cQsGHSw/2-480w.webp" alt="pasquier-coureau" width="90" height="82">
-            </div>
-            <div class="name">PC CLIM</div>
-        </div>
-    </div>
-    </div>
-</nav>
-{% block body %}{% endblock %}
-<section class="">
-    <!-- Footer -->
-    <footer class="text-center text-white">
-        <!-- Grid container -->
-        <div class="container p-4 pb-0">
-            <!-- Section: CTA -->
-            <section class="">
-                <p class="d-flex justify-content-center align-items-center">
-                    <span class="me-3">Register for free</span>
-                    <button type="button" class="btn btn-outline-light btn-rounded">
-                        Sign up!
-                    </button>
-                </p>
-            </section>
-            <!-- Section: CTA -->
-        </div>
-        <!-- Grid container -->
 
-        <!-- Copyright -->
-        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-            © 2020 Copyright:
-            <a class="text-white" href="https://mdbootstrap.com/">MDBootstrap.com</a>
-        </div>
-        <!-- Copyright -->
-    </footer>
-    <!-- Footer -->
-</section>
+{% include '_navbar.html.twig' %}
+
+{% block body %}{% endblock %}
 
 {% block javascripts %}{{ encore_entry_script_tags('app') }}{% endblock %}
+
 </body>
 </html>

@@ -2,75 +2,36 @@
 @import "vars";
 @import "~bootstrap/scss/bootstrap";
 
-body {
+html, body {
     background-color: #FFFFFF;
 }
 
 .navbar {
-    color: $nav-bar !important;
+    color: $first-color !important;
+}
+
+section {
+    min-height: 100vh;
 }
 
 .name {
-    color: $nav-bar !important;
+    color: $first-color !important;
     font-size: $size-title;
     letter-spacing: 2px;
     font-family: 'Comfortaa', cursive;
     margin-top: 5px;
 }
 
-.link {
-    font-family: 'Inter', sans-serif;
-    color: $text;
-
-text
-    &:link:hover {
-        color: $text !important;
-    }
+.img {
+    border-radius: 5px;
 }
 
-.hover-underline-animation {
-    display: inline-block;
-    position: relative;
-    color: $nav-bar !important;
-}
-
-.hover-underline-animation:after {
-    content: '';
-    position: absolute;
-    width: 100%;
-    transform: scaleX(0);
-    height: 2px;
-    bottom: 0;
-    left: 0;
-    background-color: #900202;
-    transform-origin: bottom right;
-    transition: transform 0.25s ease-out;
-}
-
-.hover-underline-animation:hover:after {
-    transform: scaleX(1);
-    transform-origin: bottom left;
-}
-
-section {
-    max-height: 100vh;
+.title {
+    font-family: $size-title;
+    color: $first-color;
 }
 
 .introduction {
-    background-color: $nav-bar;
     font-size: $size-text;
 }
 
-.img {
-    position: relative;
-    top: 0;
-    left: 0;
-}
-
-footer {
-    background-color: $nav-bar;
-    position: fixed;
-    height: 100px;
-    bottom: 0;
-    width: 100%;
-}
