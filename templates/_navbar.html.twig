@@ -1,37 +1,56 @@
-<nav class="bg-white w-full flex relative justify-between items-center mx-auto px-8 h-20 bg-fixed">
-    <div class="inline-flex">
-        <div class="hidden md:block flex justify-center items-center">
-            <img class="logo" src="https://i.ibb.co/5nrV2ZV/2-480w.png" alt="pc-clim-logo" border="0">
+<nav class="flex items-center justify-between flex-wrap p-6">
+    <div class="flex items-center flex-shrink-0 mr-6">
+        <div class="flex items-center">
+            <div class="h-16">
+                <img class="logo" src="https://i.ibb.co/5nrV2ZV/2-480w.png" alt="pc-clim-logo" border="0">
+            </div>
+            <p class="ml-2">
+                Climatisation et pompe à chaleur
+            </p>
         </div>
-        <div class="flex justify-center items-center">
-            Climatisation et pompe à chaleur
-        </div>
+
     </div>
 
-    <div class="hidden sm:block flex-shrink flex-grow-0 justify-start px-2">
-        <div class="inline-block">
-            <div class="inline-flex items-center max-w-full">
-                <a href="#" class="ml-7 uppercase">Accueil</a>
-                <a href="#" class="ml-7 uppercase">Prestations</a>
-                <a href="#" class="ml-7 uppercase">Contact</a>
+    <div class="block lg:hidden">
+        <button class="flex items-center px-3 py-2 border rounded text-teal-200 border-teal-400 hover:text-white hover:border-white">
+            <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title>
+                <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/>
+            </svg>
+        </button>
+    </div>
+
+
+    <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
+        <div class="text-sm lg:flex-grow">
+            <div class="hidden lg:block flex-shrink flex-grow-0 justify-start px-2">
+                <div class="inline-block">
+                    <div class="inline-flex items-center max-w-full">
+                        <a href="#" class="ml-7 uppercase">Accueil</a>
+                        <a href="#" class="ml-7 uppercase">Prestations</a>
+                        <a href="#" class="ml-7 uppercase">Contact</a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
     <div class="phone flex-initial p-2">
         <div class="flex justify-end items-center relative">
-
             <div class="flex relative justify-between items-center">
-                <div class="mr-3">
+                <div class="sm:mr-3">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" class="w-6 h-6">
-                        <path fill-rule="evenodd" d="M1.5 4.5a3 3 0 013-3h1.372c.86 0 1.61.586 1.819 1.42l1.105 4.423a1.875 1.875 0 01-.694 1.955l-1.293.97c-.135.101-.164.249-.126.352a11.285 11.285 0 006.697 6.697c.103.038.25.009.352-.126l.97-1.293a1.875 1.875 0 011.955-.694l4.423 1.105c.834.209 1.42.959 1.42 1.82V19.5a3 3 0 01-3 3h-2.25C8.552 22.5 1.5 15.448 1.5 6.75V4.5z" clip-rule="evenodd" />
+                        <path fill-rule="evenodd"
+                              d="M1.5 4.5a3 3 0 013-3h1.372c.86 0 1.61.586 1.819 1.42l1.105 4.423a1.875 1.875 0 01-.694 1.955l-1.293.97c-.135.101-.164.249-.126.352a11.285 11.285 0 006.697 6.697c.103.038.25.009.352-.126l.97-1.293a1.875 1.875 0 011.955-.694l4.423 1.105c.834.209 1.42.959 1.42 1.82V19.5a3 3 0 01-3 3h-2.25C8.552 22.5 1.5 15.448 1.5 6.75V4.5z"
+                              clip-rule="evenodd"/>
                     </svg>
                 </div>
                 <div class="text-white">
-                    06 63 29 27 08
+                    <span class="hidden sm:block">
+                        06 63 29 27 08
+                    </span>
                 </div>
             </div>
-
         </div>
     </div>
+
 </nav>
