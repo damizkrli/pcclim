@@ -26,11 +26,11 @@ body {
 
 .presentation {
   width: 100%;
-  aspect-ratio: 16 / 5;
+  aspect-ratio: 16 / 4;
   object-fit: cover;
 }
 
-.content {
+.accueil {
   background-repeat: no-repeat;
   background-position: top;
   width: 100%;
@@ -40,10 +40,15 @@ body {
 .box {
   max-width: 1200px;
   margin: auto;
-  transform: translateY(-30%);
+  transform: translateY(-50%);
 
   div {
     background-color: white;
   }
 }
 
+.button {
+  background-color: #05316E;
+  color: white;
+  padding: 10px;
+}
