@@ -7,10 +7,6 @@ html, body {
   height: 100%;
 }
 
-head {
-
-}
-
 body {
   background-color: white;
 }
@@ -51,4 +47,12 @@ body {
   background-color: #05316E;
   color: white;
   padding: 10px;
+}
+
+#prestations {
+  background-color: #F5F5F5;
+}
+
+.img-presta {
+  max-height: 150px;
 }
