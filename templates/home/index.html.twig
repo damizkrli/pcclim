@@ -4,19 +4,23 @@
 
 {% block body %}
     <section>
-        {% include '/parts/_accueil.html.twig' %}
+        {% include '/parts/accueil.html.twig' %}
     </section>
 
-        {% include '/parts/_climatisation.html.twig' %}
+        {% include '/parts/climatisation.html.twig' %}
 
-        {% include '/parts/_chauffe-eau.html.twig' %}
+        {% include '/parts/chauffe-eau.html.twig' %}
 
     <section class="equipe">
-        {% include '/parts/_equipe.html.twig' %}
+        {% include '/parts/equipe.html.twig' %}
     </section>
 
     <section>
-        {% include '/parts/_secteurs.html.twig' %}
+        {% include '/parts/secteurs.html.twig' %}
+    </section>
+
+    <section class="avis">
+        {% include '/parts/avis.html.twig' %}
     </section>
 
 {% endblock %}
