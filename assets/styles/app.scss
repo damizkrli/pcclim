@@ -11,10 +11,6 @@ body {
   background-color: white;
 }
 
-section {
-  height: 100;
-}
-
 nav {
   background-color: white;
 }
@@ -27,6 +23,8 @@ nav {
   width: 100%;
   height: 100%;
 }
+
+/* PARTS */
 
 .presentation {
   width: 100%;
@@ -41,22 +39,6 @@ nav {
   height: 100%;
 }
 
-.box {
-  max-width: 1200px;
-  margin: auto;
-  transform: translateY(-50%);
-
-  div {
-    background-color: white;
-  }
-}
-
-.button {
-  background-color: #05316E;
-  color: white;
-  padding: 10px;
-}
-
 .climatisation {
   background-color: #F5F5F5;
 }
@@ -69,6 +51,26 @@ nav {
   background-color: #F5F5F5;
 }
 
+.box {
+  max-width: 1200px;
+  margin: auto;
+  transform: translateY(-50%);
+
+  div {
+    background-color: white;
+  }
+}
+
+.button {
+  background-color: #112869;
+  color: white;
+  padding: 10px;
+}
+
 .img-presta {
   max-height: 150px;
+}
+
+.title {
+  color: #112869;
 }
