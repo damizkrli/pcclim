@@ -2,47 +2,46 @@
     <div class="container m-auto px-6 text-gray-600 md:px-12 xl:px-6 pb-16">
         <h2 class="mb-12 text-center text-2xl text-gray-900 font-bold md:text-4xl">Ils nous on fait confiance</h2>
         <div class="grid gap-8 md:grid-rows-2 lg:grid-cols-2">
-            <div class="row-span-2 p-6 border border-gray-100 rounded-xl bg-gray-50 text-center sm:p-8">
+            <div class="row-span-2 p-6 border border-gray-100 rounded-xl text-center sm:p-8">
                 <div class="h-full flex flex-col justify-center space-y-4">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-20 h-20 mx-auto">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
-                    </svg>
                     <p class="text-gray-600 md:text-xl"><span class="font-serif">"</span> Installation d’un climatiseur
                         le 08/02/2019 : PARFAIT à tout point de vue, ponctualité, propreté, rapidité, instructions.
                         Personnel particulièrement agréable et professionnel. J’ai expérimenté Semfi...à éliminer si
                         vous hésitez.<span class="font-serif">"</span></p>
                     <div>
-                        <h6 class="text-lg font-semibold leading-none">Jane Doe</h6>
-                        <span class="text-xs text-gray-500">Product Designer</span>
+                        <div class="flex items-center justify-center">
+                            {% include '/parts/stars.html.twig' %}
+                        </div>
+
+                        <h6 class="text-lg font-semibold leading-none">wangliangsuzhou</h6>
+                        <span class="text-xs text-gray-500">08/01/2019</span>
                     </div>
                 </div>
             </div>
 
-            <div class="p-6 border border-gray-100 rounded-xl bg-gray-50 sm:flex sm:space-x-8 sm:p-8">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-20 h-20 mx-auto">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
-                </svg>
+            <div class="p-6 border border-gray-100 rounded-xl sm:flex sm:space-x-8 sm:p-8">
                 <div class="space-y-4 mt-4 text-center sm:mt-0 sm:text-left">
-                    <h3 class="font-bold">
+                    <h3 class="font-bold flex items-center justify-center">
                         <a href="https://www.pagesjaunes.fr/pros/55667464" target="_blank">
-                            Competence et respect des engagements
+                            Compétence et respect des engagements
                         </a>
                     </h3>
-                    <p class="text-gray-600"><span class="font-serif">"</span>
-                        Entreprise tres competente qui m'a installé une clim réversible d'une maniere exemplaire .
-                        Personnels tres sympas,efficaces et qui m'ont laissé un chantier "nickel" . A recommander tant
+                    <p class="text-gray-600 flex justify-center space-y-4"><span class="font-serif">"</span>
+                        Entreprise très compétente qui m'a installé une clim réversible d'une manière exemplaire.
+                        Personnels tres sympas, efficaces et qui m'ont laissé un chantier "nickel". À recommander tant
                         sur le plan professionnel que sur le plan tarifaire et respect des délais. A RECOMMANDER
                         <span class="font-serif">"</span></p>
                     <div>
+                        <div class="flex items-center justify-start">
+                            {% include '/parts/stars.html.twig' %}
+                        </div>
+
                         <h6 class="text-lg font-semibold leading-none">Gérard Ansart</h6>
                         <span class="text-xs text-gray-500">18/06/2018</span>
                     </div>
                 </div>
             </div>
-            <div class="p-6 border border-gray-100 rounded-xl bg-gray-50 sm:flex sm:space-x-8 sm:p-8">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-20 h-20 mx-auto">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
-                </svg>
+            <div class="p-6 border border-gray-100 rounded-xl sm:flex sm:space-x-8 sm:p-8">
                 <div class="space-y-4 mt-4 text-center sm:mt-0 sm:text-left">
                     <h3 class="font-bold">
                         <a href="https://www.pagesjaunes.fr/pros/55667464" target="_blank">Réparation clim</a>
@@ -52,6 +51,9 @@
                         impeccable entreprise à recommander, je ne connais pas les noms des employés, mais bravo.<span
                                 class="font-serif">"</span></p>
                     <div>
+                        <div class="flex items-center justify-start">
+                            {% include '/parts/stars.html.twig' %}
+                        </div>
                         <h6 class="text-lg font-semibold leading-none">Yves Martaguet</h6>
                         <span class="text-xs text-gray-500">03/10/2016</span>
                     </div>
