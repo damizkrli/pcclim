@@ -2,6 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>{% block title %}Welcome!{% endblock %}</title>
         <link rel="icon" href="https://i.ibb.co/5nrV2ZV/2-480w.png">
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
@@ -13,7 +14,7 @@
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
     </head>
-    <body class="pt-16" id="accueil">
+    <body class="" id="accueil">
     {% include '_navbar.html.twig' %}
         {% block body %}{% endblock %}
     {% include '_footer.html.twig' %}
