@@ -80,3 +80,9 @@ nav {
   display: none;
   background-color: #112869;
 }
+
+@media screen and (max-width: 640px) {
+  .accueil {
+    height: 60vh;
+  }
+}
