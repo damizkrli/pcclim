@@ -1,35 +1,53 @@
-<div class="secteurs">
+<h2 class="title font-bold text-3xl md:text-4xl lg:text-5xl font-heading pt-8 pb-8 text-center">
+    Secteur d'intervention
+</h2>
 
-    <h2 class="title font-bold text-3xl md:text-4xl lg:text-5xl font-heading pt-16 pb-16 text-center">
-        Secteur d'intervention
-    </h2>
+<div class="secteurs text-gray-600 body-font relative">
 
-    <div class="chauffe-eau flex items-center justify-center my-12 max-sm:m-4 min-md:justify-items-center">
-        <div class="container mb-16 mx-auto max-md:px-26">
-            <div class="flex max-lg:flex-col">
-                <div class="mt-2 mr-4">
-                    <p class="indent-5">
-                        L'entreprise PC Clim est composée de professionnels qualifiés et expérimentés, formés régulièrement pour
-                        être à la pointe de la technologie et offrir un service de qualité.
-                    </p>
-                    <br>
-                    <p class="indent-5">
-                        Ils mettent un point d'honneur à travailler
-                        de manière efficace et rapide tout en respectant les normes de sécurité et d'environnement.
-                    </p>
-                    <br>
-                    <p class="indent-5 mb-4">
-                        Grâce à leur savoir-faire et leur engagement envers la satisfaction de leurs clients, ils ont su faire
-                        de leur entreprise une référence dans le domaine de l'installation de pompes à chaleur en
-                        Charente-Maritime.
-                    </p>
+    <div class="absolute inset-0 bg-gray-300">
+        <iframe width="100%" height="100%" frameborder="0" marginheight="0" marginwidth="0" title="map" scrolling="no"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d712972.7760795051!2d-0.7783765500000001!3d45.73009395!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48010f8cd49d63f3%3A0x305d39260e72680!2sCharente-Maritime!5e0!3m2!1sfr!2sfr!4v1672848147243!5m2!1sfr!2sfr"
+                style=""></iframe>
+    </div>
+    <div class="container px-5 py-24 mx-auto flex">
+        <div class="shadow-lg lg:w-1/3 md:w-1/2 bg-white rounded p-8 flex flex-col md:ml-auto w-full mt-10 md:mt-0 relative z-10">
+            <h2 class="text-gray-900 text-lg mb-1 font-medium title-font">Vous souhaitez des informations ?</h2>
+            <p class="leading-relaxed mb-5 text-gray-600">Obtenez une une estimation de votre projet et rendez-vous avec
+                un technicien.</p>
+            <div class="relative mb-4">
+                <div class="grid gap-4 grid-cols-2">
+                    <div>
+                        <label for="email" class="leading-7 text-sm text-gray-600">Nom</label>
+                        <input type="email" id="email" name="email"
+                               class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                    </div>
+                    <div>
+                        <label for="email" class="leading-7 text-sm text-gray-600">Prénom</label>
+                        <input type="email" id="email" name="email"
+                               class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                    </div>
+                    <div>
+                        <label for="email" class="leading-7 text-sm text-gray-600">Téléphone</label>
+                        <input type="email" id="email" name="email"
+                               class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                    </div>
+                    <div>
+                        <label for="email" class="leading-7 text-sm text-gray-600">Mail</label>
+                        <input type="email" id="email" name="email"
+                               class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                    </div>
                 </div>
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d712972.7760795051!2d-0.7783765500000001!3d45.73009395!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48010f8cd49d63f3%3A0x305d39260e72680!2sCharente-Maritime!5e0!3m2!1sfr!2sfr!4v1672848147243!5m2!1sfr!2sfr"
-                        allowfullscreen="true" loading="lazy"
-                        class="flex-shrink-0 min-sm:grid-cols-1 mr-3 max-sm:mr-0 min-sm:w-full"
-                        referrerpolicy="no-referrer-when-downgrade">
-                </iframe>
             </div>
+            <div class="relative mb-4">
+                <label for="message" class="leading-7 text-sm text-gray-600">Message</label>
+                <textarea id="message" name="message"
+                          class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"></textarea>
+            </div>
+            <button class="text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">
+                Envoyer
+            </button>
+            <p class="text-xs text-gray-500 mt-3">Nos équipes mettent tout en oeuvre pour traiter votre demande.</p>
         </div>
     </div>
+
 </div>
