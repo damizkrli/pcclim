@@ -2,6 +2,9 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@900&family=Open+Sans:ital,wght@0,300;1,300&display=swap');
+
+
 html, body {
   margin: 0;
   height: 100%;
@@ -24,6 +27,16 @@ nav {
   height: 100%;
 }
 
+.title {
+  font-size: calc(22px + (22 - 12) * ((100vw - 300px) / (1600 - 300)));;
+  font-family: 'Lato', sans-serif;
+}
+
+.text {
+  font-size: calc(16px + (16 - 12) * ((100vw - 300px) / (1600 - 300)));;
+  font-family: 'Open Sans', sans-serif;
+}
+
 /* PARTS */
 
 .presentation {
@@ -36,7 +49,6 @@ nav {
   background-repeat: no-repeat;
   background-position: top;
   width: 100%;
-  height: 100vh;
 }
 
 .climatisation {
@@ -49,6 +61,10 @@ nav {
 
 .equipe {
   background-color: #F5F5F5;
+
+  .img {
+    border-radius: 4px;
+  }
 }
 
 .avis {
@@ -61,28 +77,42 @@ nav {
   transform: translateY(-50%);
 
   div {
-    background-color: white;
+    background-color: #112869;
+    color: white;
+    border-radius: 4px;
   }
+}
+
+.presta {
+  width: 70%;
 }
 
 .button {
   background-color: #112869;
   color: white;
   padding: 10px;
+  border-radius: 4px;
 }
 
 .title {
   color: #112869;
 }
 
+/* BACK TO TOP BUTTON */
 #btn-back-to-top {
   position: fixed;
   display: none;
   background-color: #112869;
 }
 
-@media screen and (max-width: 640px) {
-  .accueil {
-    height: 80vh;
+.footer {
+  background-color: #112869;
+}
+
+/* RESPONSIVE */
+
+@media screen and (width: 1280px){
+  .presta {
+    width: 60%;
   }
 }
