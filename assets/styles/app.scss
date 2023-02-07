@@ -84,7 +84,7 @@ nav {
 }
 
 .presta {
-  width: 40%;
+  width: 80%;
 }
 
 .button {
@@ -107,6 +107,12 @@ nav {
 
 .footer {
   background-color: #112869;
+}
+
+li {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* RESPONSIVE */
