@@ -78,6 +78,8 @@ Encore
     // enable SASS support
     .enablePostCssLoader()
 
+    .copyFiles({ from: './assets/images' })
+
 ;
 
 module.exports = Encore.getWebpackConfig();
