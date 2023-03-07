@@ -4,57 +4,44 @@
 
 <div class="secteurs text-gray-600 body-font relative">
 
-    <div class="absolute inset-0">
-        <iframe width="100%" height="100%" frameborder="0" marginheight="0" marginwidth="0" title="map" scrolling="no"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d712972.7760795051!2d-0.7783765500000001!3d45.73009395!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48010f8cd49d63f3%3A0x305d39260e72680!2sCharente-Maritime!5e0!3m2!1sfr!2sfr!4v1672848147243!5m2!1sfr!2sfr"
-                style=""></iframe>
-    </div>
     <div class="container px-5 py-24 mx-auto flex">
         <div class="shadow-lg lg:w-1/2 md:w-1/2 xl:w-1/2 bg-white rounded p-8 flex flex-col md:ml-auto w-full mt-10 md:mt-0 relative z-10">
             <h2 class="text-gray-900 text-lg mb-1 font-medium title-font">Vous souhaitez des informations ?</h2>
             <p class="leading-relaxed mb-5 text-gray-600">Obtenez une estimation de votre projet et un rendez-vous avec
                 un technicien.</p>
+            {{ form_start(form) }}
             <div class="relative mb-4">
                 <div class="grid gap-4 grid-cols-2">
                     <div>
-                        <label for="email" class="leading-7 text-sm text-gray-600">Nom</label>
-                        <input type="email" id="email" name="email"
-                               class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                        {{ form_row(form.lastname) }}
                     </div>
                     <div>
-                        <label for="email" class="leading-7 text-sm text-gray-600">Prénom</label>
-                        <input type="email" id="email" name="email"
-                               class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                        {{ form_row(form.firstname) }}
                     </div>
                 </div>
-                <div>
-                    <label for="email" class="leading-7 text-sm text-gray-600">Adresse complète</label>
-                    <input type="email" id="email" name="email"
-                           class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                <div class="mt-5">
+                    {{ form_row(form.address) }}
                 </div>
                 <div class="grid gap-4 grid-cols-2">
-                    <div>
-                        <label for="email" class="leading-7 text-sm text-gray-600">Téléphone</label>
-                        <input type="email" id="email" name="email"
-                               class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                    <div class="mt-5">
+                        {{ form_row(form.phone) }}
                     </div>
-                    <div>
-                        <label for="email" class="leading-7 text-sm text-gray-600">Mail</label>
-                        <input type="email" id="email" name="email"
-                               class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+                    <div class="mt-5">
+                        {{ form_row(form.email) }}
                     </div>
                 </div>
             </div>
-            <div class="relative mb-4">
-                <label for="message" class="leading-7 text-sm text-gray-600">Message</label>
-                <textarea id="message" name="message"
-                          class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"></textarea>
+            <div class="relative mb-4 mt-5">
+                {{ form_row(form.message, { 'attr': {'style': 'height: 150px'} }) }}
             </div>
-            <button class="envoyer text-white border-0 py-2 px-6 focus:outline-none rounded text-lg">
-                Envoyer
-            </button>
+            {{ form_end(form) }}
             <p class="text-xs text-gray-500 mt-3">Nos équipes mettent tout en œuvre pour traiter votre demande.</p>
         </div>
+    </div>
+    <div class="absolute inset-0">
+        <iframe width="100%" height="100%" frameborder="0" marginheight="0" marginwidth="0" title="map" scrolling="no"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d712972.7760795051!2d-0.7783765500000001!3d45.73009395!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48010f8cd49d63f3%3A0x305d39260e72680!2sCharente-Maritime!5e0!3m2!1sfr!2sfr!4v1672848147243!5m2!1sfr!2sfr"
+                style=""></iframe>
     </div>
 
 </div>
