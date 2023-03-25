@@ -5,6 +5,9 @@ module.exports = {
       './templates/**/*.html.twig'
   ],
   theme: {
+    colors: {
+        blue: '#112869',
+    },
     extend: {},
   },
   plugins: [],
