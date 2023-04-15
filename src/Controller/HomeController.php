@@ -28,13 +28,16 @@ class HomeController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()){
 
+//            dd($contact);
+
             $manager->persist($contact);
             $manager->flush();
 
             $email = (new Email())
                 ->from($contact->getEmail())
                 ->to('pc-clim@hotmail.com')
-                ->html($contact->getMessage());
+                ->subject('Vous avez un nouveau message de ' . $contact->getFirstname() . ' ' . $contact->getLastname())
+                ->html($this->renderView('mail/emails.html.twig', ['contact' => $contact]));
 
             $mailer->send($email);
 
@@ -43,12 +46,14 @@ class HomeController extends AbstractController
                 'Votre message à été envoyé avec succès. Nous vous contacterons le plus rapidement possible.'
             );
 
+
             return $this->redirectToRoute('app_home');
 
         }
 
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',
+            'contact' => Contact::class,
             'form' => $form->createView()
         ]);
     }
