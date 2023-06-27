@@ -90,7 +90,7 @@
 
                 <h3 class="text-center" style="padding-top: 15px">Informations du contact</h3>
 
-                <p class="text-center">Email : <a href="mailto:{{ contact.email }}">{{ contact.email }}</a></p>
+                <p class="text-center">Email : <a href="mailto:{{ contact.email | lower }}">{{ contact.email | lower }}</a></p>
                 <p class="text-center">Téléphone : <a href="tel:{{ contact.phone }}">+33{{ contact.phone }}</a></p>
                 <p class="text-center">Adresse Complète
                     : {{ contact.address }} {{ contact.postalCode }} {{ contact.city }}</p>
