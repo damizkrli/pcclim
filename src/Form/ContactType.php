@@ -41,7 +41,7 @@ class ContactType extends AbstractType
                 ],
                 'attr'        => [
                     'class' => 'w-full bg-white rounded border border-gray-300 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out'
-                ]
+                ],
             ])
             ->add('address', TextType::class, [
                 'label'       => 'Adresse',
@@ -116,12 +116,13 @@ class ContactType extends AbstractType
                     'class' => 'w-full bg-white rounded border border-gray-300 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out'
                 ]
             ])
-            ->add('submit', SubmitType::class, [
-                'label' => 'Envoyer votre message',
-                'attr'  => [
-                    'class' => 'bg-transparent hover:bg-blue border-blue text-blue font-semibold hover:text-white py-2 px-4 border border-blue hover:border-transparent rounded'
-                ]
-            ]);
+//            ->add('submit', SubmitType::class, [
+//                'label' => 'Envoyer votre message',
+//                'attr'  => [
+//                    'class' => 'bg-transparent hover:bg-blue border-blue text-blue font-semibold hover:text-white py-2 px-4 border border-blue hover:border-transparent rounded'
+//                ]
+//            ])
+        ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void

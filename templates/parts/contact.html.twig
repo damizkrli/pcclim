@@ -33,43 +33,52 @@
                 </div>
             {% endfor %}
 
-            {{ form_start(form) }}
-            <div class="relative mb-4">
-                <div class="grid gap-4 grid-cols-2">
-                    <div>
-                        {{ form_row(form.lastname) }}
-                    </div>
-                    <div>
-                        {{ form_row(form.firstname) }}
-                    </div>
-                </div>
-                <div class="mt-5">
-                    {{ form_row(form.address) }}
-                    <div class="grid gap-4 grid-cols-2">
-                        <div class="mt-5">
-                            {{ form_row(form.postalCode) }}
-                        </div>
-                        <div class="mt-5">
-                            {{ form_row(form.city) }}
-                        </div>
-                    </div>
-                </div>
-                <div class="grid gap-4 grid-cols-2">
-                    <div class="mt-5">
-                        {{ form_row(form.phone) }}
-                    </div>
-                    <div class="mt-5">
-                        {{ form_row(form.email) }}
-                    </div>
-                </div>
+           <div class="disable-form">
+               {{ form_start(form) }}
+                {# FORMULAIRE DÉSACTIVÉ LE 21/03 : ATTENTE RÉTABLISSEMENT COMPTE EMAIL CLIENT (HOTMAIL) #}
+               <div class="relative mb-4">
+                   <div class="grid gap-4 grid-cols-2">
+                       <div>
+                           {{ form_row(form.lastname) }}
+                       </div>
+                       <div>
+                           {{ form_row(form.firstname) }}
+                       </div>
+                   </div>
+                   <div class="mt-5">
+                       {{ form_row(form.address) }}
+                       <div class="grid gap-4 grid-cols-2">
+                           <div class="mt-5">
+                               {{ form_row(form.postalCode) }}
+                           </div>
+                           <div class="mt-5">
+                               {{ form_row(form.city) }}
+                           </div>
+                       </div>
+                   </div>
+                   <div class="grid gap-4 grid-cols-2">
+                       <div class="mt-5">
+                           {{ form_row(form.phone) }}
+                       </div>
+                       <div class="mt-5">
+                           {{ form_row(form.email) }}
+                       </div>
+                   </div>
+               </div>
+               <div class="relative mb-4 mt-5 disable-form">
+                   {{ form_row(form.message, { 'attr': {'style': 'height: 150px'} }) }}
+               </div>
+               {{ form_end(form) }}
+           </div>
+            <div>
+                <p class="out">Le formulaire est actuellement indisponible.</p>
+                <p class="out">Pour toute demande, veuillez nous contacter aux numéros ci-dessous.</p>
+                <p class="out">Merci de votre compréhension.</p>
             </div>
-            <div class="relative mb-4 mt-5">
-                {{ form_row(form.message, { 'attr': {'style': 'height: 150px'} }) }}
-            </div>
-            {{ form_end(form) }}
             <p class="text-xs text-gray-500 mt-3">Nos équipes mettent tout en œuvre pour traiter votre demande.</p>
         </div>
     </div>
+
     <div class="absolute inset-0">
         <iframe width="100%" height="100%" frameborder="0" marginheight="0" marginwidth="0" title="map"
                 scrolling="no"
