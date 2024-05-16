@@ -16,6 +16,7 @@
   margin-top: 15px;
   margin-bottom: 15px;
 }
+
 // --------------------------------------------------------------------------------------
 
 /* HEAD */
@@ -97,7 +98,31 @@ nav {
   }
 }
 
+.relative {
+  position: relative;
+}
+
+.absolute {
+  position: absolute;
+}
+
+.bg-blur {
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(2px);
+  padding: 10px;
+}
+
+.text-center h4, .text-center span {
+  margin: 0;
+  color: #000;
+}
+
+
 /* CONTACT */
+
+section .contact {
+  background-color: #F5F5F5;
+}
 
 .envoyer {
   background-color: #FFFFFF;
@@ -113,7 +138,7 @@ nav {
 /* AVIS */
 
 .avis {
-  background-color: #F5F5F5;
+  background-color: #FFFFFF;
 }
 
 .box {
@@ -126,6 +151,21 @@ nav {
     color: white;
     border-radius: 4px;
   }
+}
+
+.blockquote {
+  background-color: #F5F5F5;
+}
+
+/* FOOTER */
+
+.footer {
+  background-color: #F5F5F5;
+  border-color: #112869;
+}
+
+iframe {
+  border-color: #112869;
 }
 
 /* BACK TO TOP BUTTON */
