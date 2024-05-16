@@ -1,71 +1,60 @@
-<div class="climatisation mb-4">
-
-    <h2 class="title font-bold text-3xl md:text-4xl lg:text-5xl font-heading pt-8 pb-8 text-center">
-        Prestations
-    </h2>
-
-    <div class="grid grid-cols-2 max-sm:grid-cols-1 mb-8">
-        <div class="grid grid-cols-2 max-sm:grid-cols-1 max-xl:grid-cols-2 max-sm:m-4 min-md:grid-rows-1">
-            <div>
-                <img class="presta max-xl:w-full mx-auto rounded shadow-lg"
-                     src="{{ asset('build/climatisation_air_air.png') }}"
-                     alt="installation-pc-clim">
-            </div>
-            <div class="p-5">
-                <h3 class="font-bold text-slate-700 leading-snug title">Installation</h3>
-                <p class="mt-2 text-sm text-slate-600 indent-5 text">
-                    Le système de climatisation réversible est un équipement qui nécessite une
-                    installation professionnelle. Un expert en climatisation effectuera une évaluation
-                    de la pièce à climatiser pour choisir le système adapté et planifiera son
-                    installation en suivant les instructions du fabricant. Il garantira également un
-                    fonctionnement optimal en effectuant un réglage précis.
-                </p>
+<section class="presta">
+    <div class="mx-auto max-w-screen-2xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
+        <div class="md:flex md:items-end md:justify-between">
+            <div class="max-sm:w-auto">
+                <h2 class="title text-4xl font-bold tracking-tight sm:text-5xl">
+                    Explorez nos offres de services
+                </h2>
             </div>
         </div>
-        <div class="grid grid-cols-2 max-sm:grid-cols-1 max-xl:grid-cols-2 max-sm:m-4 min-md:grid-rows-1">
-            <div>
-                <img class="presta max-xl:w-full mx-auto rounded shadow-lg"
-                     src="{{ asset('build/employe-pc-clim.jpg') }}"
-                     alt="entretien-pc-clim">
-            </div>
-            <div class="p-5">
-                <h3 class="font-bold text-slate-700 leading-snug title">Entretien</h3>
-                <p class="mt-2 text-sm text-slate-600 indent-5 text">
-                    Le système de climatisation réversible est un équipement qui nécessite une
-                    installation professionnelle. Un expert en climatisation effectuera une évaluation
-                    de la pièce à climatiser pour choisir le système adapté et planifiera son
-                    installation en suivant les instructions du fabricant. Il garantira également un
-                    fonctionnement optimal en effectuant un réglage précis.
-                </p>
-            </div>
-        </div>
-    </div>
 
-    <div class="chauffe-eau flex items-center justify-center min-md:justify-items-center">
-        <div class="container">
-            <div class="flex max-sm:flex-col mt-4">
-                <img class="flex-shrink-0 min-sm:grid-cols-1 mr-3 max-sm:grid-cols-1 max-xl:grid-cols-2 max-sm:m-4 min-md:grid-rows-1 rounded shadow-lg"
-                     src="{{ asset('build/projets-personnalises.jpg') }}"
-                     alt="installation-chauffe-eau-thermodynamique-pc-clim" style="height: 20rem">
+        <div class="mt-36 grid grid-cols-1 gap-4 md:grid-cols-3 lg:grid-cols-1 xl:grid-cols-3">
+
+            {# INSTALLATION #}
+            <div class="card grid grid-rows-1 max-sm:grid-cols-1 max-xl:grid-cols-1 max-sm:m-4 min-md:grid-rows-1 px-10">
+                <div>
+                    <img class="presta image-fixed-size max-xl:w-full mx-auto rounded shadow-lg"
+                         src="{{ asset('build/climatisation_air_air.png') }}"
+                         alt="installation-pc-clim">
+                </div>
                 <div class="p-5">
-                    <h3 class="font-bold text-slate-700 leading-snug title">Projets Personnalisés</h3>
-                    <p class="mt-2 text-sm text-slate-600 indent-5 text">
-                        PC clim vous offre un accompagnement personnalisé pour l'installation de votre
-                        climatisation réversible. Chaque client a des besoins uniques en matière de
-                        confort thermique et nous nous efforçons de les satisfaire. Contactez PC Clim dès aujourd'hui
-                        pour
-                        en savoir plus sur notre accompagnement personnalisé pour l'installation de votre climatisation
-                        réversible.
-                    </p>
-
-                    <p class="mt-2 text-sm text-slate-600 indent-5 text">
-                        En plus de l'installation, PC Clim fourni également un support technique pour vous
-                        assurer que votre climatisation réversible fonctionne correctement et continue de le faire pour
-                        de nombreuses années à venir. Ils sont à votre disposition pour répondre à toutes vos
-                        questions et pour vous aider à entretenir votre système.
+                    <h3 class="font-bold text-slate-700 leading-snug title text-center">Installation</h3>
+                    <p class="mt-2 text-xl text-slate-600 text">
+                        La pompe à chaleur, l'allié incontournable pour un habitat économe et durable
                     </p>
                 </div>
             </div>
+
+            {# ENTRETIEN #}
+            <div class="grid grid-rows-1 max-sm:grid-cols-1 max-xl:grid-cols-1 max-sm:m-4 min-md:grid-rows-1 ps-10 pe-10">
+                <div>
+                    <img class="presta image-fixed-size max-xl:w-full mx-auto rounded shadow-lg"
+                         src="{{ asset('build/employe-pc-clim.jpg') }}"
+                         alt="entretien-pc-clim">
+                </div>
+                <div class="p-5">
+                    <h3 class="font-bold text-slate-700 leading-snug title text-center">Entretien</h3>
+                    <p class="mt-2 text-xl text-slate-600 text">
+                        Un entretien régulier, la clé d'une pompe à chaleur performante et durable.
+                    </p>
+                </div>
+            </div>
+
+            {# PROJETS PERSO #}
+            <div class="grid grid-rows-1 max-sm:grid-cols-1 max-xl:grid-cols-1 max-sm:m-4 min-md:grid-rows-1 px-10">
+                <div>
+                    <img class="presta image-fixed-size max-xl:w-full mx-auto rounded shadow-lg"
+                         src="{{ asset('build/projets-personnalises.jpg') }}"
+                         alt="entretien-pc-clim">
+                </div>
+                <div class="p-5">
+                    <h3 class="font-bold text-slate-700 leading-snug title text-center">Sur-mesure</h3>
+                    <p class="mt-2 text-xl text-slate-600 text">
+                        Contactez-nous et optez pour une installation sur-mesure, durable et performante.
+                    </p>
+                </div>
+            </div>
+
         </div>
     </div>
-</div>
+</section>

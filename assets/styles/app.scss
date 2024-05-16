@@ -43,6 +43,10 @@ nav {
   height: 100%;
 }
 
+.title {
+  color: #112869;
+}
+
 /* ACCUEIL */
 
 .title {
@@ -73,22 +77,20 @@ nav {
 
 /* PRESTA */
 
-.climatisation {
+.presta {
   background-color: #F5F5F5;
 }
 
-.chauffe-eau {
-  background-color: white;
-}
-
-.presta {
-  width: 80%;
+.image-fixed-size {
+  height: auto; /* Ajustez la hauteur selon vos besoins */
+  width: auto; /* Permet de maintenir le ratio de l'image */
+  object-fit: cover; /* Si vous voulez que l'image couvre toute la hauteur sans déformer */
 }
 
 /* ÉQUIPE */
 
 .equipe {
-  background-color: #F5F5F5;
+  background-color: #FFFFFF;
 
   .img {
     border-radius: 4px;
@@ -98,7 +100,7 @@ nav {
 /* CONTACT */
 
 .envoyer {
-  background-color: #112869;
+  background-color: #FFFFFF;
 }
 
 .message {
@@ -138,6 +140,6 @@ nav {
 
 @media screen and (width: 1280px){
   .presta {
-    width: 60%;
+
   }
 }
