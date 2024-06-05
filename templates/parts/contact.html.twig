@@ -10,134 +10,137 @@
 
     <div id="contact"></div>
 
-<div class="text-gray-600 body-font relative py-24">
-    <div class="container px-5 mx-auto flex">
-        <div>
-            <div class="grid md:flex-col gap-6 text-center mt-4">
-                <div>
-                    <div class="block">
-                        <div class="overflow-hidden h-24"></div>
-                        <div class="w-24 -mt-12 overflow-hidden border-2 border-white rounded-full mx-auto bg-white">
-                            <img src="https://i.ibb.co/6HvVZyK/pascal-pasquier.jpg" alt="pascal-pasquier" border="0">
-                        </div>
-                        <div class="p-6">
-                            <h4 class="text-2xl font-semibold mb-4">Pascal Pasquier</h4>
-                            <hr/>
-                            <p class="mt-4">
-                                Une question technique ? Contactez Pascal au
-                                <a href="tel:+33663292708"><u>0663292708</u></a>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <div class="block">
-                        <div class="overflow-hidden rounded-t-lg h-24"></div>
-                        <div class="w-24 -mt-12 overflow-hidden border-2 border-white rounded-full mx-auto bg-white">
-                            <img src="https://i.ibb.co/3h8FkVc/samuel-courreau.jpg" alt="samuel-courreau" border="0">
-                        </div>
-                        <div class="p-6">
-                            <h4 class="text-2xl font-semibold mb-4">Samuel Coureau</h4>
-                            <hr/>
-                            <p class="mt-4">
-                                Une question technique ? Contactez Samuel au
-                                <a href="tel:+33662682637"><u>0662682637</u></a>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <div class="block">
-                        <div class="overflow-hidden rounded-t-lg h-24"></div>
-                        <div class="w-24 -mt-12 overflow-hidden border-2 border-white rounded-full mx-auto bg-white">
-                            <img src="https://i.ibb.co/fk4Ny0v/val-rie-pasquier.jpg" alt="val-rie-pasquier" border="0">
-                        </div>
-                        <div class="p-6">
-                            <h4 class="text-2xl font-semibold mb-4">Valérie Pasquier</h4>
-                            <hr/>
-                            <p class="mt-4">
-                                Une question administrative ? Contactez Valérie au
-                                <a href="tel:+33754220799"><u>0754220799</u></a>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="shadow-lg lg:w-1/2 md:w-1/2 xl:w-1/2 bg-white rounded p-8 flex flex-col md:ml-auto w-full md:mt-0 relative z-10">
-            <h2 class="text-gray-900 text-lg mb-1 font-medium title-font">Vous souhaitez des informations ?</h2>
-            <p class="leading-relaxed mb-5 text-gray-600">Obtenez une estimation de votre projet et un rendez-vous
-                avec un technicien.</p>
-
-            {% for label, messages in app.flashes %}
-                <div class="bg-green-50 border-b border-green-400 text-green-800 text-sm p-4 mb-4 flex justify-between">
-                    <div>
-                        <div class="flex items-center">
-                            <svg xmlns="http://www.w3.org/2000/svg"
-                                 class="h-4 w-4 mr-2"
-                                 viewBox="0 0 20 20"
-                                 fill="currentColor">
-                                <path fill-rule="evenodd"
-                                      d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
-                                      clip-rule="evenodd"/>
-                            </svg>
-
-                            {% for message in messages %}
-                                <div class="flash-{{ label }}">
-                                    {{ message }}
-                                </div>
-                            {% endfor %}
-                        </div>
-                    </div>
-                </div>
-            {% endfor %}
-
-           <div class="disable-form">
-               {{ form_start(form) }}
-                {# FORMULAIRE DÉSACTIVÉ LE 21/03 : ATTENTE RÉTABLISSEMENT COMPTE EMAIL CLIENT (HOTMAIL) #}
-               <div class="relative mb-4">
-                   <div class="grid gap-4 grid-cols-2">
-                       <div>
-                           {{ form_row(form.lastname) }}
-                       </div>
-                       <div>
-                           {{ form_row(form.firstname) }}
-                       </div>
-                   </div>
-                   <div class="mt-5">
-                       {{ form_row(form.address) }}
-                       <div class="grid gap-4 grid-cols-2">
-                           <div class="mt-5">
-                               {{ form_row(form.postalCode) }}
-                           </div>
-                           <div class="mt-5">
-                               {{ form_row(form.city) }}
-                           </div>
-                       </div>
-                   </div>
-                   <div class="grid gap-4 grid-cols-2">
-                       <div class="mt-5">
-                           {{ form_row(form.phone) }}
-                       </div>
-                       <div class="mt-5">
-                           {{ form_row(form.email) }}
-                       </div>
-                   </div>
-               </div>
-               <div class="relative mb-4 mt-5 disable-form">
-                   {{ form_row(form.message, { 'attr': {'style': 'height: 150px'} }) }}
-               </div>
-               {{ form_end(form) }}
-           </div>
+    <div class="text-gray-600 body-font relative py-24">
+        <div class="container px-5 mx-auto flex">
             <div>
-                <p class="out">Le formulaire est actuellement indisponible.</p>
-                <p class="out">Pour toute demande, veuillez nous contacter aux numéros ci-dessous.</p>
-                <p class="out">Merci de votre compréhension.</p>
+                <div class="grid md:flex-col gap-6 text-center mt-4">
+                    <div>
+                        <div class="block">
+                            <div class="overflow-hidden h-24"></div>
+                            <div class="w-24 -mt-12 overflow-hidden border-2 border-white rounded-full mx-auto bg-white">
+                                <img src="https://i.ibb.co/6HvVZyK/pascal-pasquier.jpg" alt="pascal-pasquier"
+                                     border="0">
+                            </div>
+                            <div class="p-6">
+                                <h4 class="text-2xl font-semibold mb-4">Pascal Pasquier</h4>
+                                <hr/>
+                                <p class="mt-4">
+                                    Une question technique ? Contactez Pascal au
+                                    <a href="tel:+33663292708"><u>0663292708</u></a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="block">
+                            <div class="overflow-hidden rounded-t-lg h-24"></div>
+                            <div class="w-24 -mt-12 overflow-hidden border-2 border-white rounded-full mx-auto bg-white">
+                                <img src="https://i.ibb.co/3h8FkVc/samuel-courreau.jpg" alt="samuel-courreau"
+                                     border="0">
+                            </div>
+                            <div class="p-6">
+                                <h4 class="text-2xl font-semibold mb-4">Samuel Coureau</h4>
+                                <hr/>
+                                <p class="mt-4">
+                                    Une question technique ? Contactez Samuel au
+                                    <a href="tel:+33662682637"><u>0662682637</u></a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="block">
+                            <div class="overflow-hidden rounded-t-lg h-24"></div>
+                            <div class="w-24 -mt-12 overflow-hidden border-2 border-white rounded-full mx-auto bg-white">
+                                <img src="https://i.ibb.co/fk4Ny0v/val-rie-pasquier.jpg" alt="val-rie-pasquier"
+                                     border="0">
+                            </div>
+                            <div class="p-6">
+                                <h4 class="text-2xl font-semibold mb-4">Valérie Pasquier</h4>
+                                <hr/>
+                                <p class="mt-4">
+                                    Une question administrative ? Contactez Valérie au
+                                    <a href="tel:+33754220799"><u>0754220799</u></a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <p class="text-xs text-gray-500 mt-3">Nos équipes mettent tout en œuvre pour traiter votre demande.</p>
+            <div class="shadow-lg lg:w-1/2 md:w-1/2 xl:w-1/2 bg-white rounded p-8 flex flex-col md:ml-auto w-full md:mt-0 relative z-10">
+                <h2 class="text-gray-900 text-lg mb-1 font-medium title-font">Vous souhaitez des informations ?</h2>
+                <p class="leading-relaxed mb-5 text-gray-600">Obtenez une estimation de votre projet et un rendez-vous
+                    avec un technicien.</p>
+
+                {% for label, messages in app.flashes %}
+                    <div class="bg-green-50 border-b border-green-400 text-green-800 text-sm p-4 mb-4 flex justify-between">
+                        <div>
+                            <div class="flex items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg"
+                                     class="h-4 w-4 mr-2"
+                                     viewBox="0 0 20 20"
+                                     fill="currentColor">
+                                    <path fill-rule="evenodd"
+                                          d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                                          clip-rule="evenodd"/>
+                                </svg>
+
+                                {% for message in messages %}
+                                    <div class="flash-{{ label }}">
+                                        {{ message }}
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+
+                <div class="disable-form">
+                    {{ form_start(form) }}
+                    <div class="relative mb-4">
+                        <div class="grid gap-4 grid-cols-2">
+                            <div>
+                                {{ form_row(form.lastname) }}
+                            </div>
+                            <div>
+                                {{ form_row(form.firstname) }}
+                            </div>
+                        </div>
+                        <div class="mt-5">
+                            {{ form_row(form.address) }}
+                            <div class="grid gap-4 grid-cols-2">
+                                <div class="mt-5">
+                                    {{ form_row(form.postalCode) }}
+                                </div>
+                                <div class="mt-5">
+                                    {{ form_row(form.city) }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grid gap-4 grid-cols-2">
+                            <div class="mt-5">
+                                {{ form_row(form.phone) }}
+                            </div>
+                            <div class="mt-5">
+                                {{ form_row(form.email) }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="relative mb-4 mt-5 disable-form">
+                        {{ form_row(form.message, { 'attr': {'style': 'height: 150px'} }) }}
+                    </div>
+                    {{ form_end(form) }}
+                </div>
+                {# SI FORMULAIRE DÉSACTIVÉ #}
+                {# <div> #}
+                {# <p class="out">Le formulaire est actuellement indisponible.</p> #}
+                {# <p class="out">Pour toute demande, veuillez nous contacter aux numéros ci-dessous.</p> #}
+                {# <p class="out">Merci de votre compréhension.</p> #}
+                {# </div> #}
+                <p class="text-xs text-gray-500 mt-3">Nos équipes mettent tout en œuvre pour traiter votre demande.</p>
+            </div>
         </div>
     </div>
-</div>
 
 
 </section>

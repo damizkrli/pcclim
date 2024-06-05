@@ -8,12 +8,16 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
 use Symfony\Component\Routing\Annotation\Route;
 
 class HomeController extends AbstractController
 {
+    /**
+     * @throws TransportExceptionInterface
+     */
     #[Route('/', name: 'app_home')]
     public function index(
         Request $request,
@@ -28,14 +32,12 @@ class HomeController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()){
 
-//            dd($contact);
-
             $manager->persist($contact);
             $manager->flush();
 
             $email = (new Email())
                 ->from($contact->getEmail())
-                ->to('pc-clim@hotmail.com')
+                ->to('pcclimroyan@gmail.com')
                 ->subject('Vous avez un nouveau message de ' . $contact->getFirstname() . ' ' . $contact->getLastname())
                 ->html($this->renderView('mail/emails.html.twig', ['contact' => $contact]));
 
