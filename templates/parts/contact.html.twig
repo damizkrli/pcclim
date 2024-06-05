@@ -129,7 +129,18 @@
                     <div class="relative mb-4 mt-5 disable-form">
                         {{ form_row(form.message, { 'attr': {'style': 'height: 150px'} }) }}
                     </div>
+
+                    {# LOCAL CAPTCHA #}
+                    <div class="g-recaptcha" data-sitekey="6LeArPEpAAAAALSrEG3_1Zxx9kTQNWAqgtjrw4bv"></div><br/>
+
+                    {# ONLINE CAPTCHA #}
+                    <div class="g-recaptcha" data-sitekey="6LcMqvEpAAAAACwqGEVM9h5mPCwJjW5u490ilmeQ"></div><br/>
+
                     {{ form_end(form) }}
+
+                    <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
+                            async defer>
+                    </script>
                 </div>
                 {# SI FORMULAIRE DÉSACTIVÉ #}
                 {# <div> #}
