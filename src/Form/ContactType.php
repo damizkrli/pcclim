@@ -28,7 +28,7 @@ class ContactType extends AbstractType
                         'min' => 2,
                         'max' => 100,
                         'minMessage' => "Votre nom doit contenir plus de {{ limit }} lettres.",
-                        'maxMessage' => "Votre nom doit contenir moins de {{ max }} lettres."
+                        'maxMessage' => "Votre nom doit contenir moins de {{ limit }} lettres."
                     ]),
                 ],
                 'attr'        => [
@@ -47,7 +47,7 @@ class ContactType extends AbstractType
                         'min' => 2,
                         'max' => 100,
                         'minMessage' => 'Votre prénom doit contenir plus de {{ limit }} lettres.',
-                        'maxMessage' => 'Votre prénom doit contenir moins de {{ max }} lettres.'
+                        'maxMessage' => 'Votre prénom doit contenir moins de {{ limit }} lettres.'
                     ])
                 ],
                 'attr'        => [
@@ -100,7 +100,7 @@ class ContactType extends AbstractType
                         'min' => 2,
                         'max' => 100,
                         'minMessage' => 'Le nom de la ville doit contenir plus de {{ limit }} lettres.',
-                        'maxMessage' => 'Le nom de la ville doit contenir moins de {{ max }} lettres.'
+                        'maxMessage' => 'Le nom de la ville doit contenir moins de {{ limit }} lettres.'
                     ])
                 ],
                 'attr'        => [
