@@ -3,9 +3,11 @@
 namespace App\Form;
 
 use App\Entity\Contact;
+use App\Validator\Constraints as AppAssert;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TelType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -20,100 +22,125 @@ class ContactType extends AbstractType
             ->add('firstname', TextType::class, [
                 'label'       => 'Nom',
                 'constraints' => [
-                    new Assert\NotBlank(),
+                    new Assert\NotBlank([
+                        'message' => "Ce champ est obligatoire."
+                    ]),
                     new Assert\Length([
                         'min' => 2,
-                        'max' => 100
-                    ])
+                        'max' => 100,
+                        'minMessage' => "Votre nom doit contenir plus de {{ limit }} lettres.",
+                        'maxMessage' => "Votre nom doit contenir moins de {{ max }} lettres."
+                    ]),
                 ],
                 'attr'        => [
-                    'class' => 'w-full bg-white rounded border border-gray-300 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out'
+                    'class' => 'mt-5 w-full bg-white rounded border border-gray-300 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out',
+                    'placeholder' => 'Votre Nom*',
                 ]
             ])
             ->add('lastname', TextType::class, [
                 'label'       => 'Prénom',
                 'constraints' => [
-                    new Assert\NotBlank(),
+                    new Assert\NotBlank([
+                        'message' => "Ce champ est obligatoire."
+                    ]),
                     new Assert\Length([
                         'min' => 2,
-                        'max' => 100
+                        'max' => 100,
+                        'minMessage' => 'Votre prénom doit contenir plus de {{ limit }} lettres.',
+                        'maxMessage' => 'Votre prénom doit contenir moins de {{ max }} lettres.'
                     ])
                 ],
                 'attr'        => [
-                    'class' => 'w-full bg-white rounded border border-gray-300 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out'
+                    'class' => 'mt-5 w-full bg-white rounded border border-gray-300 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out',
+                    'placeholder' => 'Votre Prénom*',
                 ],
             ])
             ->add('address', TextType::class, [
                 'label'       => 'Adresse',
                 'constraints' => [
-                    new Assert\NotBlank(),
+                    new Assert\NotBlank([
+                        'message' => "Ce champ est obligatoire."
+                    ]),
                     new Assert\Length([
                         'min' => 2,
-                        'max' => 100
+                        'max' => 100,
+                        'minMessage' => 'L’adresse postale n’est pas valide. Veuillez vérifier et réessayer.',
+                        'maxMessage' => 'L’adresse postale n’est pas valide. Veuillez vérifier et réessayer.',
                     ])
                 ],
                 'attr'        => [
-                    'class' => 'w-full bg-white rounded border border-gray-300 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out'
+                    'class' => 'mt-5 w-full bg-white rounded border border-gray-300 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out',
+                    'placeholder' => 'Votre Adresse*',
                 ]
+
             ])
             ->add('postalCode', IntegerType::class, [
                 'label'       => 'Code Postal',
                 'constraints' => [
-                    new Assert\NotBlank(),
-                    new Assert\Length(
-                        5,
-                    )
+                    new Assert\NotBlank([
+                        'message' => "Ce champ est obligatoire."
+                    ]),
+                    new AppAssert\PostalCode\PostalCode()
                 ],
                 'attr'        => [
-                    'class' => 'w-full bg-white rounded border border-gray-300 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out'
+                    'class' => 'mt-5 w-full bg-white rounded border border-gray-300 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out',
+                    'placeholder' => 'Votre Code Postal*',
                 ]
             ])
             ->add('city', TextType::class, [
                 'label'       => 'Ville',
                 'constraints' => [
-                    new Assert\NotBlank(),
+                    new Assert\NotBlank([
+                        'message' => "Ce champ est obligatoire."
+                    ]),
                     new Assert\Length([
                         'min' => 2,
-                        'max' => 100
+                        'max' => 100,
+                        'minMessage' => 'Le nom de la ville doit contenir plus de {{ limit }} lettres.',
+                        'maxMessage' => 'Le nom de la ville doit contenir moins de {{ max }} lettres.'
                     ])
                 ],
                 'attr'        => [
-                    'class' => 'w-full bg-white rounded border border-gray-300 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out'
+                    'class' => 'mt-5 w-full bg-white rounded border border-gray-300 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out',
+                    'placeholder' => 'Votre Ville*',
                 ]
             ])
             ->add('email', TextType::class, [
                 'label'       => 'Email',
                 'constraints' => [
-                    new Assert\NotBlank(),
-                    new Assert\Length([
-                        'min' => 2,
-                        'max' => 100
-                    ])
+                    new Assert\NotBlank([
+                        'message' => "Ce champ est obligatoire."
+                    ]),
+                    new AppAssert\Email\Email()
                 ],
                 'attr'        => [
-                    'class' => 'w-full bg-white rounded border border-gray-300 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out'
+                    'class' => 'mt-5 w-full bg-white rounded border border-gray-300 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out',
+                    'placeholder' => 'Votre Email*',
                 ]
             ])
-            ->add('phone', IntegerType::class, [
+            ->add('phone', TextType::class, [
                 'label'       => 'Téléphone',
                 'constraints' => [
-                    new Assert\NotBlank(),
-                    new Assert\Length([
-                        'min' => 2,
-                        'max' => 100
-                    ])
+                    new Assert\NotBlank([
+                        'message' => "Ce champ est obligatoire."
+                    ]),
+                    new AppAssert\PhoneNumber\PhoneNumber()
                 ],
                 'attr'        => [
-                    'class' => 'w-full bg-white rounded border border-gray-300 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out'
+                    'class' => 'mt-5 w-full bg-white rounded border border-gray-300 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out',
+                    'placeholder' => 'Votre Numéro de Téléphone*',
                 ]
             ])
             ->add('message', TextareaType::class, [
                 'label'       => 'Votre Message',
                 'constraints' => [
-                    new Assert\NotBlank(),
+                    new Assert\NotBlank([
+                        'message' => "Ce champ est obligatoire."
+                    ]),
                 ],
                 'attr'        => [
-                    'class' => 'w-full bg-white rounded border border-gray-300 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out'
+                    'class' => 'mt-5 w-full bg-white rounded border border-gray-300 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out',
+                    'placeholder' => 'Votre message...*',
                 ]
             ])
             ->add('submit', SubmitType::class, [
@@ -121,8 +148,7 @@ class ContactType extends AbstractType
                 'attr'  => [
                     'class' => 'bg-transparent hover:bg-blue border-blue text-blue font-semibold hover:text-white py-2 px-4 border border-blue hover:border-transparent rounded'
                 ]
-            ])
-        ;
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

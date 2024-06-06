@@ -34,7 +34,7 @@ class Contact
 
     #[ORM\Column(nullable: false)]
     #[Assert\NotBlank]
-    private ?int $phone = null;
+    private ?string $phone = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: false)]
     #[Assert\NotBlank]
@@ -67,7 +67,9 @@ class Contact
 
     public function setFirstname(string $firstname): self
     {
-        $this->firstname = $firstname;
+        $cleanFirstname = preg_replace('/[^a-zA-Z0-9]/', '', $firstname);
+
+        $this->firstname = htmlspecialchars(ucfirst(strtolower(trim($cleanFirstname))));
 
         return $this;
     }
@@ -79,7 +81,9 @@ class Contact
 
     public function setLastname(string $lastname): self
     {
-        $this->lastname = $lastname;
+        $cleanLastname = preg_replace('/[^a-zA-Z0-9]/', '', $lastname);
+
+        $this->lastname = htmlspecialchars(ucfirst(strtolower(trim($lastname))));
 
         return $this;
     }
@@ -91,9 +95,12 @@ class Contact
 
     public function setAddress(string $address): self
     {
-        $this->address = $address;
+        $cleanAddress = preg_replace('/[^a-zA-Z0-9]/', '', $address);
+
+        $this->address = ucwords(strtolower($address));
 
         return $this;
+
     }
 
     public function getEmail(): ?string
@@ -103,19 +110,19 @@ class Contact
 
     public function setEmail(string $email): self
     {
-        $this->email = $email;
+        $this->email = (strtolower(trim($email)));
 
         return $this;
     }
 
-    public function getPhone(): ?int
+    public function getPhone(): ?string
     {
         return $this->phone;
     }
 
-    public function setPhone(int $phone): self
+    public function setPhone(string $phone): self
     {
-        $this->phone = $phone;
+        $this->phone = htmlspecialchars(trim($phone));
 
         return $this;
     }
@@ -127,7 +134,7 @@ class Contact
 
     public function setMessage(string $message): self
     {
-        $this->message = $message;
+        $this->message = htmlspecialchars(ucfirst(strtolower(trim($message))));
 
         return $this;
     }
@@ -151,7 +158,7 @@ class Contact
 
     public function setPostalCode(int $postalCode): self
     {
-        $this->postalCode = $postalCode;
+        $this->postalCode = trim(htmlspecialchars($postalCode));
 
         return $this;
     }
@@ -163,7 +170,7 @@ class Contact
 
     public function setCity(string $city): self
     {
-        $this->city = $city;
+        $this->city = trim(htmlspecialchars(ucwords(strtolower($city))));
 
         return $this;
     }
