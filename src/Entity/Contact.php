@@ -134,7 +134,7 @@ class Contact
 
     public function setMessage(string $message): self
     {
-        $this->message = htmlspecialchars(ucfirst(strtolower(trim($message))));
+        $this->message = ucfirst(strtolower(trim($message)));
 
         return $this;
     }
