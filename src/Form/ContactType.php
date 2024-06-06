@@ -79,6 +79,12 @@ class ContactType extends AbstractType
             ->add('postalCode', IntegerType::class, [
                 'label'       => 'Code Postal',
                 'constraints' => [
+                    new Assert\Length([
+                        'min' => 5,
+                        'max' => 5,
+                        'minMessage' => 'Le code postal doit être composé de 5 chiffres',
+                        'maxMessage' => 'Le code postal doit être composé de 5 chiffres',
+                    ]),
                     new Assert\NotBlank([
                         'message' => "Ce champ est obligatoire."
                     ]),

@@ -9,7 +9,8 @@ class PostalCodeValidator extends ConstraintValidator
 {
     public function validate(mixed $value, Constraint $constraint): void
     {
-        if (!is_string($value)) {
+        if (!is_string($value) || $value != 5) {
+            $this->context->buildViolation('Le code postal doit être composé de 5 chiffres');
             return;
         }
 
