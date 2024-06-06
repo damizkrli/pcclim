@@ -7,7 +7,6 @@ use App\Validator\Constraints as AppAssert;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\TelType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -35,6 +34,7 @@ class ContactType extends AbstractType
                 'attr'        => [
                     'class' => 'mt-5 w-full bg-white rounded border border-gray-300 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out',
                     'placeholder' => 'Votre Nom*',
+                    'required' => true,
                 ]
             ])
             ->add('lastname', TextType::class, [
@@ -53,6 +53,7 @@ class ContactType extends AbstractType
                 'attr'        => [
                     'class' => 'mt-5 w-full bg-white rounded border border-gray-300 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out',
                     'placeholder' => 'Votre Prénom*',
+                    'required' => true,
                 ],
             ])
             ->add('address', TextType::class, [
@@ -71,6 +72,7 @@ class ContactType extends AbstractType
                 'attr'        => [
                     'class' => 'mt-5 w-full bg-white rounded border border-gray-300 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out',
                     'placeholder' => 'Votre Adresse*',
+                    'required' => true,
                 ]
 
             ])
@@ -85,6 +87,7 @@ class ContactType extends AbstractType
                 'attr'        => [
                     'class' => 'mt-5 w-full bg-white rounded border border-gray-300 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out',
                     'placeholder' => 'Votre Code Postal*',
+                    'required' => true,
                 ]
             ])
             ->add('city', TextType::class, [
@@ -103,6 +106,7 @@ class ContactType extends AbstractType
                 'attr'        => [
                     'class' => 'mt-5 w-full bg-white rounded border border-gray-300 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out',
                     'placeholder' => 'Votre Ville*',
+                    'required' => true,
                 ]
             ])
             ->add('email', TextType::class, [
@@ -116,6 +120,7 @@ class ContactType extends AbstractType
                 'attr'        => [
                     'class' => 'mt-5 w-full bg-white rounded border border-gray-300 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out',
                     'placeholder' => 'Votre Email*',
+                    'required' => true,
                 ]
             ])
             ->add('phone', TextType::class, [
@@ -129,6 +134,7 @@ class ContactType extends AbstractType
                 'attr'        => [
                     'class' => 'mt-5 w-full bg-white rounded border border-gray-300 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out',
                     'placeholder' => 'Votre Numéro de Téléphone*',
+                    'required' => true,
                 ]
             ])
             ->add('message', TextareaType::class, [
@@ -141,6 +147,7 @@ class ContactType extends AbstractType
                 'attr'        => [
                     'class' => 'mt-5 w-full bg-white rounded border border-gray-300 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out',
                     'placeholder' => 'Votre message...*',
+                    'required' => true,
                 ]
             ])
             ->add('submit', SubmitType::class, [

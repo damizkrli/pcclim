@@ -150,6 +150,9 @@
                     </div>
                     <div class="relative mb-4 mt-5 disable-form">
                         {{ form_widget(form.message, { 'attr': {'style': 'height: 150px'} }) }}
+                        <div class="error-message">
+                            {{ form_errors(form.message) }}
+                        </div>
                     </div>
 
                     {# LOCAL CAPTCHA #}
