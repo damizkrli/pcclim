@@ -1,0 +1,46 @@
+name: Deploy Symfony Project with Docker
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Sync project to server via rsync
+        uses: burnett01/rsync-deployments@5.2
+        with:
+          switches: -avz --delete --exclude='.env.local'
+          path: ./
+          remote_path: /var/www/pcclim
+          remote_host: ${{ secrets.SSH_HOST }}
+          remote_user: ${{ secrets.SSH_USER }}
+          remote_key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Rebuild Docker container on server
+        run: |
+          ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << 'EOF'
+            cd /var/www/pcclim
+            echo "📦 Stopping old containers..."
+            docker compose down
+
+            echo "🐳 Building new image with composer install baked..."
+            docker compose up -d --build
+
+            echo "🗄️  Running migrations..."
+            docker compose exec pcclim_web php bin/console doctrine:migrations:migrate --no-interaction
+
+            echo "🧹 Clearing cache..."
+            docker compose exec pcclim_web php bin/console cache:clear
+
+            echo "🧽 Pruning old images..."
+            docker image prune -f
+
+            echo "✅ Done!"
+          EOF

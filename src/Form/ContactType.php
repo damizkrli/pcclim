@@ -2,11 +2,9 @@
 
 namespace App\Form;
 
-use App\Entity\Contact;
 use App\Validator\Constraints as AppAssert;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -33,7 +31,7 @@ class ContactType extends AbstractType
                 ],
                 'attr'        => [
                     'class' => 'mt-5 w-full bg-white rounded border border-gray-300 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out',
-                    'placeholder' => 'Votre Nom*',
+                    'placeholder' => 'Dupont*',
                     'required' => true,
                 ]
             ])
@@ -51,8 +49,8 @@ class ContactType extends AbstractType
                     ])
                 ],
                 'attr'        => [
-                    'class' => 'mt-5 w-full bg-white rounded border border-gray-300 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out',
-                    'placeholder' => 'Votre Prénom*',
+                    'class' => 'w-full bg-white rounded border border-gray-300 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out',
+                    'placeholder' => 'Jean*',
                     'required' => true,
                 ],
             ])
@@ -71,7 +69,7 @@ class ContactType extends AbstractType
                 ],
                 'attr'        => [
                     'class' => 'mt-5 w-full bg-white rounded border border-gray-300 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out',
-                    'placeholder' => 'Votre Adresse*',
+                    'placeholder' => '12 Allée des Marguerites*',
                     'required' => true,
                 ]
 
@@ -92,7 +90,7 @@ class ContactType extends AbstractType
                 ],
                 'attr'        => [
                     'class' => 'mt-5 w-full bg-white rounded border border-gray-300 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out',
-                    'placeholder' => 'Votre Code Postal*',
+                    'placeholder' => '17000*',
                     'required' => true,
                 ]
             ])
@@ -111,7 +109,7 @@ class ContactType extends AbstractType
                 ],
                 'attr'        => [
                     'class' => 'mt-5 w-full bg-white rounded border border-gray-300 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out',
-                    'placeholder' => 'Votre Ville*',
+                    'placeholder' => 'La Rochelle*',
                     'required' => true,
                 ]
             ])
@@ -125,7 +123,7 @@ class ContactType extends AbstractType
                 ],
                 'attr'        => [
                     'class' => 'mt-5 w-full bg-white rounded border border-gray-300 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out',
-                    'placeholder' => 'Votre Email*',
+                    'placeholder' => 'dupont@jean@gmail.com*',
                     'required' => true,
                 ]
             ])
@@ -139,7 +137,7 @@ class ContactType extends AbstractType
                 ],
                 'attr'        => [
                     'class' => 'mt-5 w-full bg-white rounded border border-gray-300 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out',
-                    'placeholder' => 'Votre Numéro de Téléphone*',
+                    'placeholder' => '0617896755*',
                     'required' => true,
                 ]
             ])
@@ -152,22 +150,15 @@ class ContactType extends AbstractType
                 ],
                 'attr'        => [
                     'class' => 'mt-5 w-full bg-white rounded border border-gray-300 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out',
-                    'placeholder' => 'Votre message...*',
+                    'placeholder' => 'Veuillez indiquer la raison, afin que nous puissions vous appeler dans les meilleurs délais.*',
                     'required' => true,
                 ]
             ])
-            ->add('submit', SubmitType::class, [
-                'label' => 'Envoyer votre message',
-                'attr'  => [
-                    'class' => 'bg-transparent hover:bg-blue border-blue text-blue font-semibold hover:text-white py-2 px-4 border border-blue hover:border-transparent rounded'
-                ]
-            ]);
+        ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
-        $resolver->setDefaults([
-            'data_class' => Contact::class,
-        ]);
+        $resolver->setDefaults([]);
     }
 }

@@ -21,7 +21,9 @@
     </head>
     <body>
     {% include '_navbar.html.twig' %}
+        <div class="overflow-x-hidden">
         {% block body %}{% endblock %}
+        </div>
     {% include '_footer.html.twig' %}
     </body>
     <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>

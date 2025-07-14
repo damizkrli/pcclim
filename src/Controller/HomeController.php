@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Dto\ContactData;
 use App\Entity\Contact;
 use App\Form\ContactType;
 use Doctrine\ORM\EntityManagerInterface;
@@ -25,21 +26,17 @@ class HomeController extends AbstractController
         EntityManagerInterface $manager,
     ): Response
     {
-        $contact = new Contact();
-        $form = $this->createForm(ContactType::class, $contact);
-
+        $form = $this->createForm(ContactType::class);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()){
-
-            $manager->persist($contact);
-            $manager->flush();
-
+            $data = $form->getData();
+            
             $email = (new Email())
-                ->from($contact->getEmail())
+                ->from($data['email'])
                 ->to('pcclimroyan@gmail.com')
-                ->subject('Vous avez un nouveau message de ' . $contact->getFirstname() . ' ' . $contact->getLastname())
-                ->html($this->renderView('mail/emails.html.twig', ['contact' => $contact]));
+                ->subject('Vous avez un nouveau message de ' . $data['firstname'] . ' ' . $data['lastname'])
+                ->html($this->renderView('mail/emails.html.twig', ['contact' => $data]));
 
             $mailer->send($email);
 

@@ -75,25 +75,24 @@
         </div>
         <div class="content">
             <h1 class="text-center p-6 rounded-lg">Nouveau message de <br>
-                {{ contact.firstname|capitalize }} {{ contact.lastname|capitalize }}
+                {{ contact['firstname']|capitalize }} {{ contact['lastname']|capitalize }}
             </h1>
             <div class="mb">
                 <div style="margin-top: 12px; margin-bottom: 12px">
-                    Le {{ contact.createdAt|format_datetime(locale='fr',pattern="dd MMMM YYYY") }}
-                    à {{ contact.createdAt|format_datetime(locale='fr',pattern="HH") }}
-                    h{{ contact.createdAt|format_datetime(locale='fr',pattern="mm") }}.
+                    Le {{ "now"|date("d/m/y", "Europe/Paris") }}
+                    à {{ "now"|date("H", "Europe/Paris") }}h{{ "now"|date("i", "Europe/Paris") }}.
                 </div>
 
                 <p class="block">
-                    "{{ contact.message|capitalize }}."
+                    "{{ contact['message']|capitalize }}."
                 </p>
 
                 <h3 class="text-center" style="padding-top: 15px">Informations du contact</h3>
 
-                <p class="text-center">Email : <a href="mailto:{{ contact.email | lower }}">{{ contact.email | lower }}</a></p>
-                <p class="text-center">Téléphone : <a href="tel:{{ contact.phone }}">+33{{ contact.phone }}</a></p>
+                <p class="text-center">Email : <a href="mailto:{{ contact['email'] | lower }}">{{ contact['email'] | lower }}</a></p>
+                <p class="text-center">Téléphone : <a href="tel:{{ contact['phone'] }}">+33{{ contact['phone'] }}</a></p>
                 <p class="text-center">Adresse Complète
-                    : {{ contact.address }} {{ contact.postalCode }} {{ contact.city }}</p>
+                    : {{ contact['address'] }} {{ contact['postalCode'] }} {{ contact['city'] }}</p>
             </div>
         </div>
     </div>
