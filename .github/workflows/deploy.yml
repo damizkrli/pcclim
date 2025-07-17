@@ -22,7 +22,7 @@ jobs:
       - name: 📂 Deploy via rsync
         uses: burnett01/rsync-deployments@5.2
         with:
-          switches: -avz --delete --exclude='.env.local'
+          switches: -az --delete --exclude='.env.local'
           path: ./
           remote_path: /var/www/pcclim
           remote_host: ${{ secrets.SSH_HOST }}
@@ -34,15 +34,11 @@ jobs:
           ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << 'EOF'
             set -e
             cd /var/www/pcclim
-
             echo "📦 Stopping old containers..."
             docker compose down
-
             echo "🐳 Building and starting containers..."
             docker compose up -d --build
-
             echo "🧽 Pruning old images..."
             docker image prune -f
-
             echo "✅ Deployed successfully!"
           EOF
