@@ -1,14 +1,12 @@
 name: Deploy Symfony Project with Docker
 
 on:
-  workflow_run:
-    workflows: ["Docker Image CI"]
-    types:
-      - completed
+  push:
+    branches:
+      - main
 
 jobs:
   deploy:
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     name: 🚀 Deploy to Lightsail
     runs-on: ubuntu-latest
 
@@ -21,10 +19,10 @@ jobs:
           mkdir -p ~/.ssh
           ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
 
-      - name: 📂 Deploy via rsync
+      - name: 📂 Deploy via rsync (avec vendor)
         uses: burnett01/rsync-deployments@5.2
         with:
-          switches: -avz --delete --exclude='.env.local' --exclude='vendor/'
+          switches: -az --delete --chmod=D755,F644
           path: ./
           remote_path: /var/www/pcclim
           remote_host: ${{ secrets.SSH_HOST }}
@@ -40,6 +38,9 @@ jobs:
 
             echo "📦 Stopping old containers..."
             docker compose down
+
+            echo "🔓 Fixing permissions..."
+            sudo chown -R $USER:www-data .
 
             echo "🐳 Building and starting containers..."
             docker compose up -d --build
