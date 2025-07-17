@@ -17,7 +17,7 @@ COPY . /var/www/html
 
 WORKDIR /var/www/html
 
-# RUN composer install --no-dev --optimize-autoloader --classmap-authoritative --verbose
+RUN composer install --no-dev --optimize-autoloader --classmap-authoritative --verbose
 
 
 RUN echo "opcache.enable=1" >> /usr/local/etc/php/conf.d/docker-php-ext-opcache.ini \
@@ -29,4 +29,3 @@ RUN echo "opcache.enable=1" >> /usr/local/etc/php/conf.d/docker-php-ext-opcache.
 RUN chown -R www-data:www-data /var/www/html
 
 EXPOSE 80
-ENTRYPOINT ["/bin/bash"]

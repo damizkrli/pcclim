@@ -7,13 +7,19 @@ on:
 
 jobs:
   deploy:
+    name: 🚀 Deploy to Lightsail
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: ⬇️ Checkout repo
         uses: actions/checkout@v3
 
-      - name: Sync project to server via rsync
+      - name: 🔐 Add SSH host to known_hosts
+        run: |
+          mkdir -p ~/.ssh
+          ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
+
+      - name: 📂 Deploy via rsync
         uses: burnett01/rsync-deployments@5.2
         with:
           switches: -avz --delete --exclude='.env.local'
@@ -23,24 +29,21 @@ jobs:
           remote_user: ${{ secrets.SSH_USER }}
           remote_key: ${{ secrets.SSH_PRIVATE_KEY }}
 
-      - name: Rebuild Docker container on server
+      - name: 🐳 Rebuild Docker container
         run: |
           ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << 'EOF'
+            set -e
+
             cd /var/www/pcclim
+
             echo "📦 Stopping old containers..."
             docker compose down
 
-            echo "🐳 Building new image with composer install baked..."
+            echo "🐳 Building and starting containers..."
             docker compose up -d --build
-
-            echo "🗄️  Running migrations..."
-            docker compose exec pcclim_web php bin/console doctrine:migrations:migrate --no-interaction
-
-            echo "🧹 Clearing cache..."
-            docker compose exec pcclim_web php bin/console cache:clear
 
             echo "🧽 Pruning old images..."
             docker image prune -f
 
-            echo "✅ Done!"
+            echo "✅ Deployed successfully!"
           EOF
