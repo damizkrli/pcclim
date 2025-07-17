@@ -7,11 +7,11 @@ on:
 
 jobs:
   deploy:
-    name: 🚀 Deploy to Server
+    name: 🚀 Deploy to Lightsail
     runs-on: ubuntu-latest
 
     steps:
-      - name: ⬇️ Checkout code
+      - name: ⬇️ Checkout repo
         uses: actions/checkout@v3
 
       - name: 🔐 Add SSH host to known_hosts
@@ -19,7 +19,7 @@ jobs:
           mkdir -p ~/.ssh
           ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
 
-      - name: 📂 Rsync project to server
+      - name: 📂 Deploy via rsync
         uses: burnett01/rsync-deployments@5.2
         with:
           switches: -avz --delete --exclude='.env.local'
@@ -29,16 +29,12 @@ jobs:
           remote_user: ${{ secrets.SSH_USER }}
           remote_key: ${{ secrets.SSH_PRIVATE_KEY }}
 
-      - name: 🐳 Restart Docker on server
+      - name: 🐳 Rebuild Docker container
         run: |
-          ssh -o StrictHostKeyChecking=no -i ~/.ssh/github_actions_key ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} '
-            cd /var/www/pcclim &&
-            docker compose down &&
-            docker compose up -d --build &&
+          ssh -o StrictHostKeyChecking=no -i ~/.ssh/github_actions_key ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << 'EOF'
+            set -e
+            cd /var/www/pcclim
+            docker compose down
+            docker compose up -d --build
             docker image prune -f
-          '
-        env:
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-
-      - name: ✅ Done
-        run: echo "✅ Deployment complete."
+          EOF
