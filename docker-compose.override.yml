@@ -1,8 +1,0 @@
-services:
-  web:
-    environment:
-      APP_ENV: dev
-    volumes:
-      - .:/var/www/html
-    ports:
-      - "8082:80"

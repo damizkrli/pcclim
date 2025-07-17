@@ -1,10 +1,17 @@
 FROM php:8.2-fpm
 
 RUN apt-get update && apt-get install -y \
-    libicu-dev \
-    libzip-dev \
-    unzip \
     git \
+    unzip \
+    libzip-dev \
+    libicu-dev \
+    libpq-dev \
+    zlib1g-dev \
+    libonig-dev \
+    libxml2-dev \
+    libsqlite3-dev \
+    pkg-config \
+    build-essential \
     && docker-php-ext-install intl zip opcache pdo pdo_sqlite
 
 COPY --from=composer:2.7 /usr/bin/composer /usr/bin/composer
