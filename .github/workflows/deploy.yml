@@ -19,10 +19,10 @@ jobs:
           mkdir -p ~/.ssh
           ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
 
-      - name: 📂 Deploy via rsync (avec vendor)
+      - name: 📂 Deploy via rsync
         uses: burnett01/rsync-deployments@5.2
         with:
-          switches: -az --delete --chmod=D755,F644
+          switches: -az --delete --chmod=Du=rwx,Dg=rx,Do=rx,Fu=rw,Fg=r,Fo=r
           path: ./
           remote_path: /var/www/pcclim
           remote_host: ${{ secrets.SSH_HOST }}
@@ -38,9 +38,6 @@ jobs:
 
             echo "📦 Stopping old containers..."
             docker compose down
-
-            echo "🔓 Fixing permissions..."
-            sudo chown -R $USER:www-data .
 
             echo "🐳 Building and starting containers..."
             docker compose up -d --build
