@@ -1,25 +1,24 @@
-FROM php:8.2-fpm
+FROM php:8.2-apache
 
-RUN apt-get update && apt-get install -y \
-    git \
-    unzip \
-    libzip-dev \
-    libicu-dev \
-    libpq-dev \
-    zlib1g-dev \
-    libonig-dev \
-    libxml2-dev \
-    libsqlite3-dev \
-    pkg-config \
-    build-essential \
-    && docker-php-ext-install intl zip opcache pdo pdo_sqlite
+RUN apt-get update && \
+    apt-get install -y libicu-dev libzip-dev unzip git && \
+    docker-php-ext-install intl zip opcache pdo pdo_mysql
 
 COPY --from=composer:2.7 /usr/bin/composer /usr/bin/composer
 
+ENV APACHE_DOCUMENT_ROOT=/var/www/html/public
+
+RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' \
+    /etc/apache2/sites-available/*.conf && \
+    sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' \
+    /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
+
+RUN a2enmod rewrite
+
+COPY . /var/www/html
 WORKDIR /var/www/html
 
-COPY . .
-
-RUN composer install --no-dev --optimize-autoloader --classmap-authoritative
-
 RUN chown -R www-data:www-data /var/www/html
+
+EXPOSE 80
+CMD ["apache2-foreground"]
