@@ -477,3 +477,7 @@
 [2025-07-14T17:07:48.445299+00:00] security.DEBUG: Checking for authenticator support. {"firewall_name":"main","authenticators":0} []
 [2025-07-17T09:00:53.049391+00:00] request.INFO: Matched route "app_home". {"route":"app_home","route_parameters":{"_route":"app_home","_controller":"App\\Controller\\HomeController::index"},"request_uri":"http://localhost:8082/","method":"GET"} []
 [2025-07-17T09:00:53.064899+00:00] security.DEBUG: Checking for authenticator support. {"firewall_name":"main","authenticators":0} []
+[2025-07-20T16:04:02.159172+00:00] request.INFO: Matched route "app_home". {"route":"app_home","route_parameters":{"_route":"app_home","_controller":"App\\Controller\\HomeController::index"},"request_uri":"http://localhost:8080/","method":"GET"} []
+[2025-07-20T16:04:02.173801+00:00] security.DEBUG: Checking for authenticator support. {"firewall_name":"main","authenticators":0} []
+[2025-07-20T16:15:15.563914+00:00] request.INFO: Matched route "app_home". {"route":"app_home","route_parameters":{"_route":"app_home","_controller":"App\\Controller\\HomeController::index"},"request_uri":"http://localhost:8080/","method":"GET"} []
+[2025-07-20T16:15:15.571906+00:00] security.DEBUG: Checking for authenticator support. {"firewall_name":"main","authenticators":0} []

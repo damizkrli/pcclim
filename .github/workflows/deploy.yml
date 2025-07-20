@@ -14,10 +14,22 @@ jobs:
       - name: ⬇️ Checkout repo
         uses: actions/checkout@v3
 
+      - name: 🧪 Check environment and secrets
+        run: |
+          echo "Host: ${{ secrets.SSH_HOST }}"
+          echo "User: ${{ secrets.SSH_USER }}"
+          echo "Key length: $(echo "${{ secrets.SSH_PRIVATE_KEY }}" | wc -c)"
+
       - name: 🔐 Add SSH host to known_hosts
         run: |
           mkdir -p ~/.ssh
           ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
+
+      - name: 🗝️ Create SSH key file for SSH commands
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/github_actions_key
+          chmod 600 ~/.ssh/github_actions_key
 
       - name: 📂 Deploy via rsync
         uses: burnett01/rsync-deployments@5.2

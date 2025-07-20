@@ -1,7 +1,7 @@
 FROM php:8.2-apache
 
 RUN apt-get update && \
-    apt-get install -y libicu-dev libzip-dev unzip git && \
+    apt-get install -y libicu-dev libzip-dev unzip && \
     docker-php-ext-install intl zip opcache pdo pdo_mysql
 
 COPY --from=composer:2.7 /usr/bin/composer /usr/bin/composer
@@ -18,7 +18,8 @@ RUN a2enmod rewrite
 COPY . /var/www/html
 WORKDIR /var/www/html
 
-RUN chown -R www-data:www-data /var/www/html
+RUN composer install --no-dev --optimize-autoloader --no-interaction
 
 EXPOSE 80
+
 CMD ["apache2-foreground"]
