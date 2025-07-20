@@ -19,7 +19,7 @@ COPY . /var/www/html
 WORKDIR /var/www/html
 
 ENV APP_ENV=prod
-RUN composer install --no-dev --optimize-autoloader --no-interaction
+RUN composer install --no-dev --optimize-autoloader --no-interaction --no-scripts
 
 EXPOSE 80
 
