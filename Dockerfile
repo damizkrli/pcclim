@@ -7,6 +7,7 @@ RUN apt-get update && \
 COPY --from=composer:2.7 /usr/bin/composer /usr/bin/composer
 
 ENV APACHE_DOCUMENT_ROOT=/var/www/html/public
+
 RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' \
     /etc/apache2/sites-available/*.conf && \
     sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' \
@@ -15,15 +16,16 @@ RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' \
 RUN a2enmod rewrite
 
 COPY . /var/www/html
+
+COPY .env.local /var/www/html/.env
+
+RUN chown -R www-data:www-data /var/www/html && \
+    chmod -R 755 /var/www/html
+
 WORKDIR /var/www/html
-
-RUN mkdir -p var vendor && \
-    chown -R www-data:www-data /var/www/html
-
-USER www-data
 ENV APP_ENV=prod
+
 RUN composer install --no-dev --optimize-autoloader --no-interaction --no-scripts
-USER root
 
 EXPOSE 80
 
