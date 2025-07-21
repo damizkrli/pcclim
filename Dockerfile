@@ -21,6 +21,7 @@ RUN mkdir -p var vendor && \
     chown -R www-data:www-data /var/www/html
 
 USER www-data
+ENV APP_ENV=prod
 RUN composer install --no-dev --optimize-autoloader --no-interaction --no-scripts
 USER root
 
