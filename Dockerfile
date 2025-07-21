@@ -25,7 +25,9 @@ RUN chown -R www-data:www-data /var/www/html && \
 WORKDIR /var/www/html
 ENV APP_ENV=prod
 
-RUN composer install --no-dev --optimize-autoloader --no-interaction --no-scripts
+COPY . /var/www/html
+COPY .env.local /var/www/html/.env
+RUN chown -R www-data:www-data /var/www/html && chmod -R 755 /var/www/html
 
 EXPOSE 80
 
