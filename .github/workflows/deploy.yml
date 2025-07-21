@@ -1,4 +1,4 @@
-name: Deploy Symfony Project with Docker
+name: Déploiement production
 
 on:
   push:
@@ -7,50 +7,34 @@ on:
 
 jobs:
   deploy:
-    name: 🚀 Deploy to Lightsail
     runs-on: ubuntu-latest
 
     steps:
-      - name: ⬇️ Checkout repo
-        uses: actions/checkout@v3
+      - name: ⬇️ Cloner le dépôt
+        uses: actions/checkout@v4
 
-      - name: 🧪 Check environment and secrets
-        run: |
-          echo "Host: ${{ secrets.SSH_HOST }}"
-          echo "User: ${{ secrets.SSH_USER }}"
-          echo "Key length: $(echo "${{ secrets.SSH_PRIVATE_KEY }}" | wc -c)"
-
-      - name: 🔐 Add SSH host to known_hosts
-        run: |
-          mkdir -p ~/.ssh
-          ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
-
-      - name: 🗝️ Create SSH key file for SSH commands
-        run: |
-          mkdir -p ~/.ssh
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/github_actions_key
-          chmod 600 ~/.ssh/github_actions_key
-
-      - name: 📂 Deploy via rsync
-        uses: burnett01/rsync-deployments@5.2
+      - name: 🔐 Configurer la clé SSH
+        uses: webfactory/ssh-agent@v0.9.0
         with:
-          switches: -avz --delete --exclude='.env.local'
-          path: ./
-          remote_path: /var/www/pcclim
-          remote_host: ${{ secrets.SSH_HOST }}
-          remote_user: ${{ secrets.SSH_USER }}
-          remote_key: ${{ secrets.SSH_PRIVATE_KEY }}
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
-      - name: 🧪 Liste les fichiers transférés
+      - name: 🚀 Déployer le code via rsync
         run: |
-          ssh -o StrictHostKeyChecking=no -i ~/.ssh/github_actions_key ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "ls -lah /var/www/pcclim"
+          rsync -az --delete \
+            --exclude=".git" \
+            --exclude="node_modules" \
+            --exclude="vendor" \
+            --exclude="tools/php-cs-fixer/vendor" \
+            --exclude="var" \
+            --exclude=".github" \
+            --exclude=".env.local" \
+            -e "ssh -o StrictHostKeyChecking=no" \
+            ./ ubuntu@ip-172-26-5-94:/var/www/pcclim/
 
-      - name: 🐳 Rebuild Docker container
+      - name: 🐳 Reconstruire les conteneurs sur le serveur distant
         run: |
-          ssh -o StrictHostKeyChecking=no -i ~/.ssh/github_actions_key ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << 'EOF'
-            set -e
+          ssh -o StrictHostKeyChecking=no ubuntu@ip-172-26-5-94 << 'EOF'
             cd /var/www/pcclim
-            docker compose down
+            docker compose down -v --remove-orphans
             docker compose up -d --build
-            docker image prune -f
           EOF
