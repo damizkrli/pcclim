@@ -15,19 +15,17 @@ RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' \
 
 RUN a2enmod rewrite
 
-COPY . /var/www/html
-
+COPY . /var/www/html/
 COPY .env.local /var/www/html/.env
+
+WORKDIR /var/www/html
+
+ENV APP_ENV=prod
+
+RUN composer install --no-dev --optimize-autoloader --no-interaction --no-scripts
 
 RUN chown -R www-data:www-data /var/www/html && \
     chmod -R 755 /var/www/html
-
-WORKDIR /var/www/html
-ENV APP_ENV=prod
-
-COPY . /var/www/html
-COPY .env.local /var/www/html/.env
-RUN chown -R www-data:www-data /var/www/html && chmod -R 755 /var/www/html
 
 EXPOSE 80
 

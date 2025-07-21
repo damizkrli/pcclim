@@ -2,8 +2,4 @@ node_modules
 vendor
 .git
 .gitignore
-.env.local
-.env.dev
-.env.test
-.env.*
 *.log
