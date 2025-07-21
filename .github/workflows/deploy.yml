@@ -1,4 +1,4 @@
-name: Déploiement production
+name: Deploy Symfony project to production
 
 on:
   push:
@@ -10,31 +10,20 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: ⬇️ Cloner le dépôt
-        uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-      - name: 🔐 Configurer la clé SSH
-        uses: webfactory/ssh-agent@v0.9.0
-        with:
-          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-
-      - name: 🚀 Déployer le code via rsync
+      - name: Sync project files with server (rsync)
         run: |
           rsync -az --delete \
-            --exclude=".git" \
-            --exclude="node_modules" \
-            --exclude="vendor" \
-            --exclude="tools/php-cs-fixer/vendor" \
-            --exclude="var" \
-            --exclude=".github" \
-            --exclude=".env.local" \
-            -e "ssh -o StrictHostKeyChecking=no" \
-            ./ ubuntu@ip-172-26-5-94:/var/www/pcclim/
+          -e "ssh -o StrictHostKeyChecking=no" \
+          ./ ubuntu@${{ secrets.SERVER_HOST }}:/var/www/pcclim/
 
-      - name: 🐳 Reconstruire les conteneurs sur le serveur distant
+      - name: Build & Restart Docker containers on server
         run: |
-          ssh -o StrictHostKeyChecking=no ubuntu@ip-172-26-5-94 << 'EOF'
+          ssh -o StrictHostKeyChecking=no ubuntu@${{ secrets.SERVER_HOST }} << 'EOF'
             cd /var/www/pcclim
             docker compose down -v --remove-orphans
             docker compose up -d --build
+            docker exec pcclim_php php bin/console cache:clear
           EOF
