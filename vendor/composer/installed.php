@@ -1236,9 +1236,9 @@
             'dev_requirement' => true,
         ),
         'symfony/webpack-encore-bundle' => array(
-            'pretty_version' => 'v2.2.0',
-            'version' => '2.2.0.0',
-            'reference' => 'e335394b68a775a9b2bd173a8ba4fd2001f3870c',
+            'pretty_version' => 'v1.16.1',
+            'version' => '1.16.1.0',
+            'reference' => '1862d71e483769b40278548a30e756ce13ef9d4c',
             'type' => 'symfony-bundle',
             'install_path' => __DIR__ . '/../symfony/webpack-encore-bundle',
             'aliases' => array(),

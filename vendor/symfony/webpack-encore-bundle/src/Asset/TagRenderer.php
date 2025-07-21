@@ -2,9 +2,7 @@
 
 /*
  * This file is part of the Symfony WebpackEncoreBundle package.
- *
  * (c) Fabien Potencier <fabien@symfony.com>
- *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
@@ -12,6 +10,7 @@
 namespace Symfony\WebpackEncoreBundle\Asset;
 
 use Symfony\Component\Asset\Packages;
+use Symfony\Component\DependencyInjection\ServiceLocator;
 use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
 use Symfony\Contracts\Service\ResetInterface;
 use Symfony\WebpackEncoreBundle\Event\RenderAssetTagEvent;
@@ -28,20 +27,30 @@ class TagRenderer implements ResetInterface
     private $defaultLinkAttributes;
     private $eventDispatcher;
 
-    // TODO WebpackEncoreBundle 3.0: remove this property
     private $renderedFiles = [];
-    // TODO WebpackEncoreBundle 3.0: rename this property to $renderedFiles
-    private $renderedFilesWithAttributes = [];
 
     public function __construct(
-        EntrypointLookupCollectionInterface $entrypointLookupCollection,
+        $entrypointLookupCollection,
         Packages $packages,
         array $defaultAttributes = [],
         array $defaultScriptAttributes = [],
         array $defaultLinkAttributes = [],
-        ?EventDispatcherInterface $eventDispatcher = null,
+        EventDispatcherInterface $eventDispatcher = null
     ) {
-        $this->entrypointLookupCollection = $entrypointLookupCollection;
+        if ($entrypointLookupCollection instanceof EntrypointLookupInterface) {
+            @trigger_error(sprintf('The "$entrypointLookupCollection" argument in method "%s()" must be an instance of EntrypointLookupCollection.', __METHOD__), \E_USER_DEPRECATED);
+
+            $this->entrypointLookupCollection = new EntrypointLookupCollection(
+                new ServiceLocator(['_default' => function () use ($entrypointLookupCollection) {
+                    return $entrypointLookupCollection;
+                }])
+            );
+        } elseif ($entrypointLookupCollection instanceof EntrypointLookupCollectionInterface) {
+            $this->entrypointLookupCollection = $entrypointLookupCollection;
+        } else {
+            throw new \TypeError('The "$entrypointLookupCollection" argument must be an instance of EntrypointLookupCollectionInterface.');
+        }
+
         $this->packages = $packages;
         $this->defaultAttributes = $defaultAttributes;
         $this->defaultScriptAttributes = $defaultScriptAttributes;
@@ -51,7 +60,7 @@ class TagRenderer implements ResetInterface
         $this->reset();
     }
 
-    public function renderWebpackScriptTags(string $entryName, ?string $packageName = null, ?string $entrypointName = null, array $extraAttributes = [], bool $includeAttributes = false): string
+    public function renderWebpackScriptTags(string $entryName, string $packageName = null, string $entrypointName = null, array $extraAttributes = []): string
     {
         $entrypointName = $entrypointName ?: '_default';
         $scriptTags = [];
@@ -77,19 +86,18 @@ class TagRenderer implements ResetInterface
             }
             $attributes = $event->getAttributes();
 
-            $scriptTags[] = \sprintf(
+            $scriptTags[] = sprintf(
                 '<script %s></script>',
                 $this->convertArrayToAttributes($attributes)
             );
 
             $this->renderedFiles['scripts'][] = $attributes['src'];
-            $this->renderedFilesWithAttributes['scripts'][] = $attributes;
         }
 
         return implode('', $scriptTags);
     }
 
-    public function renderWebpackLinkTags(string $entryName, ?string $packageName = null, ?string $entrypointName = null, array $extraAttributes = []): string
+    public function renderWebpackLinkTags(string $entryName, string $packageName = null, string $entrypointName = null, array $extraAttributes = []): string
     {
         $entrypointName = $entrypointName ?: '_default';
         $scriptTags = [];
@@ -116,42 +124,25 @@ class TagRenderer implements ResetInterface
             }
             $attributes = $event->getAttributes();
 
-            $scriptTags[] = \sprintf(
+            $scriptTags[] = sprintf(
                 '<link %s>',
                 $this->convertArrayToAttributes($attributes)
             );
 
             $this->renderedFiles['styles'][] = $attributes['href'];
-            $this->renderedFilesWithAttributes['styles'][] = $attributes;
         }
 
         return implode('', $scriptTags);
     }
 
-    /**
-     * @param bool $includeAttributes Whether to include the attributes or not.
-     *                                In WebpackEncoreBundle 3.0, this parameter will be removed,
-     *                                and the attributes will always be included.
-     *                                TODO WebpackEncoreBundle 3.0
-     *
-     * @return ($includeAttributes is true ? list<array<string, mixed>> : list<string>)
-     */
-    public function getRenderedScripts(bool $includeAttributes = false): array
+    public function getRenderedScripts(): array
     {
-        return $includeAttributes ? $this->renderedFilesWithAttributes['scripts'] : $this->renderedFiles['scripts'];
+        return $this->renderedFiles['scripts'];
     }
 
-    /**
-     * @param bool $includeAttributes Whether to include the attributes or not.
-     *                                In WebpackEncoreBundle 3.0, this parameter will be removed,
-     *                                and the attributes will always be included.
-     *                                TODO WebpackEncoreBundle 3.0
-     *
-     * @return ($includeAttributes is true ? list<array<string, mixed>> : list<string>)
-     */
-    public function getRenderedStyles(bool $includeAttributes = false): array
+    public function getRenderedStyles(): array
     {
-        return $includeAttributes ? $this->renderedFilesWithAttributes['styles'] : $this->renderedFiles['styles'];
+        return $this->renderedFiles['styles'];
     }
 
     public function getDefaultAttributes(): array
@@ -159,15 +150,15 @@ class TagRenderer implements ResetInterface
         return $this->defaultAttributes;
     }
 
-    public function reset(): void
+    public function reset()
     {
-        $this->renderedFiles = $this->renderedFilesWithAttributes = [
+        $this->renderedFiles = [
             'scripts' => [],
             'styles' => [],
         ];
     }
 
-    private function getAssetPath(string $assetPath, ?string $packageName = null): string
+    private function getAssetPath(string $assetPath, string $packageName = null): string
     {
         if (null === $this->packages) {
             throw new \Exception('To render the script or link tags, run "composer require symfony/asset".');
@@ -198,7 +189,7 @@ class TagRenderer implements ResetInterface
                     return $key;
                 }
 
-                return \sprintf('%s="%s"', $key, htmlentities($value));
+                return sprintf('%s="%s"', $key, htmlentities($value));
             },
             array_keys($attributesMap),
             $attributesMap

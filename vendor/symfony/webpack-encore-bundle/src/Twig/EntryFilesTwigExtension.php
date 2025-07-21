@@ -2,9 +2,7 @@
 
 /*
  * This file is part of the Symfony WebpackEncoreBundle package.
- *
  * (c) Fabien Potencier <fabien@symfony.com>
- *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
@@ -50,13 +48,13 @@ final class EntryFilesTwigExtension extends AbstractExtension
             ->getCssFiles($entryName);
     }
 
-    public function renderWebpackScriptTags(string $entryName, ?string $packageName = null, string $entrypointName = '_default', array $attributes = []): string
+    public function renderWebpackScriptTags(string $entryName, string $packageName = null, string $entrypointName = '_default', array $attributes = []): string
     {
         return $this->getTagRenderer()
             ->renderWebpackScriptTags($entryName, $packageName, $entrypointName, $attributes);
     }
 
-    public function renderWebpackLinkTags(string $entryName, ?string $packageName = null, string $entrypointName = '_default', array $attributes = []): string
+    public function renderWebpackLinkTags(string $entryName, string $packageName = null, string $entrypointName = '_default', array $attributes = []): string
     {
         return $this->getTagRenderer()
             ->renderWebpackLinkTags($entryName, $packageName, $entrypointName, $attributes);
@@ -66,7 +64,7 @@ final class EntryFilesTwigExtension extends AbstractExtension
     {
         $entrypointLookup = $this->getEntrypointLookup($entrypointName);
         if (!$entrypointLookup instanceof EntrypointLookup) {
-            throw new \LogicException(\sprintf('Cannot use entryExists() unless the entrypoint lookup is an instance of "%s"', EntrypointLookup::class));
+            throw new \LogicException(sprintf('Cannot use entryExists() unless the entrypoint lookup is an instance of "%s"', EntrypointLookup::class));
         }
 
         return $entrypointLookup->entryExists($entryName);

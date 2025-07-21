@@ -2,9 +2,7 @@
 
 /*
  * This file is part of the Symfony WebpackEncoreBundle package.
- *
  * (c) Fabien Potencier <fabien@symfony.com>
- *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
@@ -95,7 +93,6 @@ final class WebpackEncoreExtension extends Extension
             $cacheEnabled ? new Reference('webpack_encore.cache') : null,
             $name,
             $strictMode,
-            new Reference('http_client', ContainerBuilder::NULL_ON_INVALID_REFERENCE),
         ];
         $definition = new Definition(EntrypointLookup::class, $arguments);
         $definition->addTag('kernel.reset', ['method' => 'reset']);
@@ -106,6 +103,6 @@ final class WebpackEncoreExtension extends Extension
 
     private function getEntrypointServiceId(string $name): string
     {
-        return \sprintf('webpack_encore.entrypoint_lookup[%s]', $name);
+        return sprintf('webpack_encore.entrypoint_lookup[%s]', $name);
     }
 }

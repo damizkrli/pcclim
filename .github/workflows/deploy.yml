@@ -41,6 +41,10 @@ jobs:
           remote_user: ${{ secrets.SSH_USER }}
           remote_key: ${{ secrets.SSH_PRIVATE_KEY }}
 
+      - name: 🧪 Liste les fichiers transférés
+        run: |
+          ssh -o StrictHostKeyChecking=no -i ~/.ssh/github_actions_key ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "ls -lah /var/www/pcclim"
+
       - name: 🐳 Rebuild Docker container
         run: |
           ssh -o StrictHostKeyChecking=no -i ~/.ssh/github_actions_key ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << 'EOF'

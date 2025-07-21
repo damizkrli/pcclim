@@ -2,9 +2,7 @@
 
 /*
  * This file is part of the Symfony WebpackEncoreBundle package.
- *
  * (c) Fabien Potencier <fabien@symfony.com>
- *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
@@ -12,8 +10,6 @@
 namespace Symfony\WebpackEncoreBundle\Asset;
 
 use Psr\Cache\CacheItemPoolInterface;
-use Symfony\Component\HttpClient\HttpClient;
-use Symfony\Contracts\HttpClient\HttpClientInterface;
 use Symfony\WebpackEncoreBundle\Exception\EntrypointNotFoundException;
 
 /**
@@ -37,15 +33,12 @@ class EntrypointLookup implements EntrypointLookupInterface, IntegrityDataProvid
 
     private $strictMode;
 
-    private $httpClient;
-
-    public function __construct(string $entrypointJsonPath, ?CacheItemPoolInterface $cache = null, ?string $cacheKey = null, bool $strictMode = true, ?HttpClientInterface $httpClient = null)
+    public function __construct(string $entrypointJsonPath, CacheItemPoolInterface $cache = null, string $cacheKey = null, bool $strictMode = true)
     {
         $this->entrypointJsonPath = $entrypointJsonPath;
         $this->cache = $cache;
         $this->cacheKey = $cacheKey;
         $this->strictMode = $strictMode;
-        $this->httpClient = $httpClient;
     }
 
     public function getJavaScriptFiles(string $entryName): array
@@ -72,7 +65,7 @@ class EntrypointLookup implements EntrypointLookupInterface, IntegrityDataProvid
     /**
      * Resets the state of this service.
      */
-    public function reset(): void
+    public function reset()
     {
         $this->returnedFiles = [];
     }
@@ -96,17 +89,17 @@ class EntrypointLookup implements EntrypointLookupInterface, IntegrityDataProvid
         return $newFiles;
     }
 
-    private function validateEntryName(string $entryName): void
+    private function validateEntryName(string $entryName)
     {
         $entriesData = $this->getEntriesData();
         if (!isset($entriesData['entrypoints'][$entryName]) && $this->strictMode) {
             $withoutExtension = substr($entryName, 0, strrpos($entryName, '.'));
 
             if (isset($entriesData['entrypoints'][$withoutExtension])) {
-                throw new EntrypointNotFoundException(\sprintf('Could not find the entry "%s". Try "%s" instead (without the extension).', $entryName, $withoutExtension));
+                throw new EntrypointNotFoundException(sprintf('Could not find the entry "%s". Try "%s" instead (without the extension).', $entryName, $withoutExtension));
             }
 
-            throw new EntrypointNotFoundException(\sprintf('Could not find the entry "%s" in "%s". Found: %s.', $entryName, $this->entrypointJsonPath, implode(', ', array_keys($entriesData['entrypoints']))));
+            throw new EntrypointNotFoundException(sprintf('Could not find the entry "%s" in "%s". Found: %s.', $entryName, $this->entrypointJsonPath, implode(', ', array_keys($entriesData['entrypoints']))));
         }
     }
 
@@ -124,37 +117,21 @@ class EntrypointLookup implements EntrypointLookupInterface, IntegrityDataProvid
             }
         }
 
-        if (str_starts_with($this->entrypointJsonPath, 'http')) {
-            if (null === $this->httpClient && !class_exists(HttpClient::class)) {
-                throw new \LogicException(\sprintf('You cannot fetch the entrypoints file from URL "%s" as the HttpClient component is not installed. Try running "composer require symfony/http-client".', $this->entrypointJsonPath));
-            }
-            $httpClient = $this->httpClient ?? HttpClient::create();
-
-            $response = $httpClient->request('GET', $this->entrypointJsonPath);
-
-            if (200 !== $response->getStatusCode()) {
-                if (!$this->strictMode) {
-                    return [];
-                }
-                throw new \InvalidArgumentException(\sprintf('Could not find the entrypoints file from URL "%s": the HTTP request failed with status code %d.', $this->entrypointJsonPath, $response->getStatusCode()));
-            }
-
-            $this->entriesData = $response->toArray();
-        } elseif (!file_exists($this->entrypointJsonPath)) {
+        if (!file_exists($this->entrypointJsonPath)) {
             if (!$this->strictMode) {
                 return [];
             }
-            throw new \InvalidArgumentException(\sprintf('Could not find the entrypoints file from Webpack: the file "%s" does not exist.', $this->entrypointJsonPath));
-        } else {
-            $this->entriesData = json_decode(file_get_contents($this->entrypointJsonPath), true);
+            throw new \InvalidArgumentException(sprintf('Could not find the entrypoints file from Webpack: the file "%s" does not exist.', $this->entrypointJsonPath));
         }
 
+        $this->entriesData = json_decode(file_get_contents($this->entrypointJsonPath), true);
+
         if (null === $this->entriesData) {
-            throw new \InvalidArgumentException(\sprintf('There was a problem JSON decoding the "%s" file', $this->entrypointJsonPath));
+            throw new \InvalidArgumentException(sprintf('There was a problem JSON decoding the "%s" file', $this->entrypointJsonPath));
         }
 
         if (!isset($this->entriesData['entrypoints'])) {
-            throw new \InvalidArgumentException(\sprintf('Could not find an "entrypoints" key in the "%s" file', $this->entrypointJsonPath));
+            throw new \InvalidArgumentException(sprintf('Could not find an "entrypoints" key in the "%s" file', $this->entrypointJsonPath));
         }
 
         if (isset($cached)) {

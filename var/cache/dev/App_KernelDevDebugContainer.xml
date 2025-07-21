@@ -5152,6 +5152,9 @@
       <call method="addExtension">
         <argument type="service" id="webpack_encore.twig_entry_files_extension"/>
       </call>
+      <call method="addExtension">
+        <argument type="service" id="webpack_encore.twig_stimulus_extension"/>
+      </call>
       <call method="addGlobal">
         <argument>app</argument>
         <argument type="service" id="twig.app_variable"/>
@@ -6463,12 +6466,14 @@
       <tag name="twig.extension"/>
       <argument type="service" id=".1_ServiceLocator~vGDQfbm"/>
     </service>
+    <service id="webpack_encore.twig_stimulus_extension" class="Symfony\WebpackEncoreBundle\Twig\StimulusTwigExtension">
+      <tag name="twig.extension"/>
+    </service>
     <service id="webpack_encore.entrypoint_lookup.cache_warmer" class="Symfony\WebpackEncoreBundle\CacheWarmer\EntrypointCacheWarmer">
       <tag name="kernel.cache_warmer"/>
       <argument type="collection">
         <argument key="_default">/var/www/html/public/build/entrypoints.json</argument>
       </argument>
-      <argument type="service" id=".debug.http_client" on-invalid="null"/>
       <argument>/var/www/html/var/cache/dev/webpack_encore.cache.php</argument>
     </service>
     <service id="webpack_encore.cache" class="Symfony\Component\Cache\Adapter\PhpArrayAdapter">
@@ -6502,7 +6507,6 @@
       <argument>null</argument>
       <argument>_default</argument>
       <argument>true</argument>
-      <argument type="service" id=".debug.http_client" on-invalid="null"/>
     </service>
     <service id=".service_locator.Yi4Ff.p" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>

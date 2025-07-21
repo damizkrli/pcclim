@@ -2,9 +2,7 @@
 
 /*
  * This file is part of the Symfony WebpackEncoreBundle package.
- *
  * (c) Fabien Potencier <fabien@symfony.com>
- *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
@@ -31,7 +29,10 @@ class PreLoadAssetsEventListener implements EventSubscriberInterface
 
     public function onKernelResponse(ResponseEvent $event): void
     {
-        if (!$event->isMainRequest()) {
+        // Handle deprecated `KernelEvent::isMasterRequest() - Can be removed when Symfony < 5.3 support is dropped.
+        $mainRequestMethod = method_exists($event, 'isMainRequest') ? 'isMainRequest' : 'isMasterRequest';
+
+        if (!$event->$mainRequestMethod()) {
             return;
         }
 
@@ -47,31 +48,23 @@ class PreLoadAssetsEventListener implements EventSubscriberInterface
         /** @var GenericLinkProvider $linkProvider */
         $linkProvider = $request->attributes->get('_links');
         $defaultAttributes = $this->tagRenderer->getDefaultAttributes();
+        $crossOrigin = $defaultAttributes['crossorigin'] ?? false;
 
-        foreach ($this->tagRenderer->getRenderedScripts(true) as $attributes) {
-            $src = $attributes['src'];
-            unset($attributes['src']);
-            $attributes = [...$defaultAttributes, ...$attributes];
+        foreach ($this->tagRenderer->getRenderedScripts() as $href) {
+            $link = $this->createLink('preload', $href)->withAttribute('as', 'script');
 
-            $link = $this->createLink('preload', $src)
-                ->withAttribute('as', 'script');
-
-            foreach ($attributes as $k => $v) {
-                $link = $link->withAttribute($k, $v);
+            if (false !== $crossOrigin) {
+                $link = $link->withAttribute('crossorigin', $crossOrigin);
             }
 
             $linkProvider = $linkProvider->withLink($link);
         }
 
-        foreach ($this->tagRenderer->getRenderedStyles(true) as $attributes) {
-            $href = $attributes['href'];
-            unset($attributes['href']);
-            $attributes = [...$defaultAttributes, ...$attributes];
-
+        foreach ($this->tagRenderer->getRenderedStyles() as $href) {
             $link = $this->createLink('preload', $href)->withAttribute('as', 'style');
 
-            foreach ($attributes as $k => $v) {
-                $link = $link->withAttribute($k, $v);
+            if (false !== $crossOrigin) {
+                $link = $link->withAttribute('crossorigin', $crossOrigin);
             }
 
             $linkProvider = $linkProvider->withLink($link);
