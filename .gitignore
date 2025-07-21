@@ -10,6 +10,7 @@ docker-compose.override.yml
 /public/bundles/
 /var/
 /vendor/
+/tools/php-cs-fixer/vendor/
 ###< symfony/framework-bundle ###
 
 ###> phpunit/phpunit ###
