@@ -1,4 +1,4 @@
-name: Deploy Symfony project to production
+name: Deploy Symfony to Production
 
 on:
   push:
@@ -8,22 +8,24 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    env:
+      SSH_USER: ${{ secrets.SSH_USER }}
+      SSH_HOST: ${{ secrets.SSH_HOST }}
+      SSH_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Sync project files with server (rsync)
+      - name: Setup SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${SSH_KEY}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H "$SSH_HOST" >> ~/.ssh/known_hosts
+
+      - name: Rsync to server
         run: |
           rsync -az --delete \
-          -e "ssh -o StrictHostKeyChecking=no" \
-          ./ ubuntu@${{ secrets.SERVER_HOST }}:/var/www/pcclim/
-
-      - name: Build & Restart Docker containers on server
-        run: |
-          ssh -o StrictHostKeyChecking=no ubuntu@${{ secrets.SERVER_HOST }} << 'EOF'
-            cd /var/www/pcclim
-            docker compose down -v --remove-orphans
-            docker compose up -d --build
-            docker exec pcclim_php php bin/console cache:clear
-          EOF
+            -e "ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no" \
+            ./ "${SSH_USER}@${SSH_HOST}:/var/www/pcclim/"
