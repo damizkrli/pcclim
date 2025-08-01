@@ -18,7 +18,7 @@ jobs:
                   host: ${{ secrets.SSH_HOST }}
                   username: ${{ secrets.SSH_USER }}
                   key: ${{ secrets.SSH_PRIVATE_KEY }}
-                  port: ${{ secrets.SSH_PORT }} # <— assurez-vous que SSH_PORT=22 dans vos secrets
+                  port: 22 # <-- testez en dur d'abord
                   script: |
                       set -e
                       cd ${{ secrets.PROJECT_PATH }}
