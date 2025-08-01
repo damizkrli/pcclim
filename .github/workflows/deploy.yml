@@ -12,17 +12,25 @@ jobs:
             - name: Check out repository
               uses: actions/checkout@v4
 
-            - name: Déployer via SSH
-              uses: appleboy/ssh-action@v0.1.7
-              with:
-                  host: ${{ secrets.SSH_HOST }}
-                  username: ${{ secrets.SSH_USER }}
-                  key: ${{ secrets.SSH_PRIVATE_KEY }}
-                  port: 22
-                  debug: true
-                  script: |
-                      set -e
-                      cd ${{ secrets.PROJECT_PATH }}
-                      git pull origin main
-                      docker compose down
-                      docker compose up -d --build
+            - name: Préparer la clé SSH
+              run: |
+                  mkdir -p ~/.ssh
+                  # Injecte la clé privée depuis votre secret
+                  echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+                  chmod 600 ~/.ssh/id_rsa
+                  # Désactive le check d’empreinte pour éviter le prompt
+                  printf "Host *\n  StrictHostKeyChecking no\n" > ~/.ssh/config
+
+            - name: Vérifier la connexion SSH
+              run: |
+                  ssh -i ~/.ssh/id_rsa -p 22 ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} hostname
+
+            - name: Déployer sur Lightsail
+              run: |
+                  ssh -i ~/.ssh/id_rsa -p 22 ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << 'EOF'
+                    set -e
+                    cd ${{ secrets.PROJECT_PATH }}
+                    git pull origin main
+                    docker compose down
+                    docker compose up -d --build
+                  EOF
