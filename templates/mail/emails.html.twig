@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Welcome to the Space Bar!</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: white;
+            font-family: Helvetica, Arial, sans-serif;
+        }
+
+        h1 {
+            background-color: #112869;
+            color: #ffffff;
+            padding: 30px 0 50px 0;
+            font-weight: normal;
+        }
+
+        hr {
+            border: none;
+            border-top: 3px solid #112869;
+            margin-bottom: 20px;
+            margin-top: 20px;
+        }
+
+        .container {
+            background-color: #fefefe;
+            width: 580px;
+            margin: 0 auto;
+        }
+
+        .bottom {
+            background-color: #efefee;
+        }
+
+        .block {
+            margin: 0;
+            padding: 20px 20px 20px 20px;
+            border-radius: 5px;
+            background-color: #112869;
+            color: white;
+        }
+
+        .logo {
+            width: 100%;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #112869;
+            color: #fefefe;
+            border: 1px solid #fff;
+            border-radius: 3px;
+            font-size: 20px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+<div class="body">
+    <div class="container">
+        <div class="header text-center">
+            <a href="https://www.pc-clim.fr">
+                <img src="https://i.ibb.co/MRNR8Q0/2-480w.png" alt="pc-clim-logo" border="0">
+            </a>
+        </div>
+        <div class="content">
+            <h1 class="text-center p-6 rounded-lg">Nouveau message de <br>
+                {{ contact.firstname|capitalize }} {{ contact.lastname|capitalize }}
+            </h1>
+            <div class="mb">
+                <div style="margin-top: 12px; margin-bottom: 12px">
+                    Le {{ "now"|date("d/m/y", "Europe/Paris") }}
+                    à {{ "now"|date("H", "Europe/Paris") }}h{{ "now"|date("i", "Europe/Paris") }}.
+                </div>
+
+                <p class="block">
+                    "{{ contact.message|capitalize }}."
+                </p>
+
+                <h3 class="text-center" style="padding-top: 15px">Informations du contact</h3>
+
+                <p class="text-center">Email : <a href="mailto:{{ contact.email | lower }}">{{ contact.email | lower }}</a></p>
+                <p class="text-center">Téléphone : <a href="tel:{{ contact.phone }}">+33{{ contact.phone }}</a></p>
+                <p class="text-center">Adresse Complète : {{ contact.address }} {{ contact.postalCode }} {{ contact.city }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

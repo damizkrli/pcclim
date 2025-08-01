@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="fr" class="overflow-auto scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    <link rel="icon" href="https://i.ibb.co/5nrV2ZV/2-480w.png">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tw-elements/dist/css/index.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/tw-elements/dist/js/index.min.js"></script>
+    <script src="https://www.google.com/recaptcha/enterprise.js?render=6LfDrZMrAAAAAN_DXkHRZHDcKDjWjhWIdgzQ8IN4"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+</head>
+</head>
+<body>
+    {% include '_navbar.html.twig' %}
+
+    <div class="overflow-x-hidden">
+        {% block body %}{% endblock %}
+    </div>
+
+    {% include '_footer.html.twig' %}
+</body>
+</html>
