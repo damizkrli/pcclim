@@ -1,0 +1,30 @@
+name: Déploiement sur Lightsail
+
+# se déclenche à chaque push sur la branche main
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    name: Déployer sur Lightsail
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Cloner le repo
+        uses: actions/checkout@v4
+
+      - name: Déployer via SSH
+        uses: appleboy/ssh-action@v0.1.7
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          user: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: ${{ secrets.SSH_PORT || 22 }}
+          script: |
+            set -e
+            cd ${{ secrets.PROJECT_PATH }}
+            git pull origin main
+            docker compose down
+            docker compose up -d --build
