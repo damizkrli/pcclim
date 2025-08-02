@@ -37,6 +37,9 @@ RUN apk add --no-cache \
 # Créer les dossiers nécessaires pour Nginx
 RUN mkdir -p /run/nginx /var/log/nginx
 
+# Créer le dossier conf.d pour vhosts
+RUN mkdir -p /etc/nginx/conf.d
+
 # Copier le code compilé depuis le builder
 COPY --from=builder /app /app
 
