@@ -8,7 +8,9 @@ services:
     env_file:
       - .env            
     volumes:
-      - ./:/app:delegated      
+      - ./:/app:delegated
+      - /etc/letsencrypt:/etc/letsencrypt
     ports:
-      - "8000:80"              
+      - "8000:80"
+      - "443:443"              
     restart: unless-stopped
