@@ -1,16 +1,12 @@
-services:
-  pcclim:
-    build:
-      context: .               
-      dockerfile: docker/Dockerfile
-    image: pcclim:latest
-    container_name: pcclim
-    env_file:
-      - .env            
-    volumes:
-      - ./:/app:delegated
-      - /etc/letsencrypt:/etc/letsencrypt
-    ports:
-      - "80:80"
-      - "443:443"              
-    restart: unless-stopped
+ services:
+   pcclim:
+     image: pcclim:latest
+     container_name: pcclim
+     env_file:
+       - .env
+   volumes:
+    - /etc/letsencrypt:/etc/letsencrypt:ro
+   ports:
+    - "80:80"
+    - "443:443"
+   restart: unless-stopped
