@@ -26,19 +26,18 @@ RUN composer install \
 FROM php:8.2-fpm-alpine
 WORKDIR /app
 
-# Installer Nginx, supervisord, Python et Certbot
+# Installer Nginx, supervisord, Certbot et plugin Nginx
 RUN apk add --no-cache \
     nginx \
     supervisor \
-    python3 \
-    py3-pip \
-    && pip3 install certbot certbot-nginx \
+    certbot \
+    certbot-nginx \
     && rm -rf /var/cache/apk/*
 
 # Créer les dossiers nécessaires pour Nginx
 RUN mkdir -p /run/nginx /var/log/nginx
 
-# Copier le code et les vendors depuis le builder
+# Copier le code compilé depuis le builder
 COPY --from=builder /app /app
 
 # Copier la configuration Nginx
@@ -52,5 +51,5 @@ RUN mkdir -p var/cache var/log \
 # Exposer les ports HTTP et HTTPS
 EXPOSE 80 443
 
-# Démarrage : PHP-FPM en daemon, puis Nginx en avant-plan
+# Lancement : daemonise PHP-FPM puis exécute Nginx au premier plan
 CMD ["sh", "-c", "php-fpm -D && exec nginx -g 'daemon off;'" ]
