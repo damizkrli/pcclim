@@ -19,8 +19,7 @@ RUN composer install \
     --no-dev \
     --optimize-autoloader \
     --no-interaction \
-    --no-scripts \
-    && php bin/console cache:warmup --env=prod
+    --no-scripts
 
 # ── STAGE 2 : image finale avec PHP-FPM + Nginx + Certbot
 FROM php:8.2-fpm-alpine
@@ -54,5 +53,8 @@ RUN mkdir -p var/cache var/log \
 # Exposer les ports HTTP et HTTPS
 EXPOSE 80 443
 
-# Lancement : daemonise PHP-FPM puis exécute Nginx au premier plan
-CMD ["sh", "-c", "php-fpm -D && exec nginx -g 'daemon off;'" ]
+COPY docker/entrypoint.sh /usr/local/bin/entrypoint.sh
+RUN chmod +x /usr/local/bin/entrypoint.sh
+
+ENTRYPOINT ["entrypoint.sh"]
+CMD ["php-fpm", "-D", "&&", "exec", "nginx", "-g", "daemon off;"]
