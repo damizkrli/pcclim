@@ -1,5 +1,8 @@
 services:
   pcclim:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
     image: pcclim:latest
     container_name: pcclim
     env_file:
