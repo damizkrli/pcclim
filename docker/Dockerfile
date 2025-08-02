@@ -34,11 +34,11 @@ RUN apk add --no-cache \
     certbot-nginx \
     && rm -rf /var/cache/apk/*
 
-# Créer les dossiers nécessaires pour Nginx
-RUN mkdir -p /run/nginx /var/log/nginx
-
 # Créer le dossier conf.d pour vhosts
 RUN mkdir -p /etc/nginx/conf.d
+
+# Créer les dossiers nécessaires pour Nginx
+RUN mkdir -p /run/nginx /var/log/nginx
 
 # Copier le code compilé depuis le builder
 COPY --from=builder /app /app
